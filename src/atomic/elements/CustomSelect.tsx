@@ -13,8 +13,12 @@ const CustomSelect = (props: CustomSelectProps) => {
      selectedValue={!value ? 'No seleccionado' : value}
      onValueChange={(itemValue) => handlerChange(id, itemValue)}
     >
-     {data?.map((item, i) => <Picker.Item key={i} label={item.name} value={item.name} style={{ fontSize: 20 }} />)}
-     {!value ? <Picker.Item label={'No seleccionado'} value={'No seleccionado'} style={{ fontSize: 20 }} /> : null}
+     {data?.map((item, i) => (
+      <Picker.Item key={i} label={item.name} value={item.name} style={{ fontSize: 20 }} />
+     ))}
+     {!value ? (
+      <Picker.Item label={'No seleccionado'} value={'No seleccionado'} style={{ fontSize: 20 }} />
+     ) : null}
     </Picker>
    </View>
   </View>

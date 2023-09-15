@@ -1,22 +1,6 @@
-export { queryDeleteContentTables, queryShowAlltables, queryTables } from './queryDatabase';
-export {
- queryCreateCommunity,
- queryDeleteCommunity,
- querySearchAllCommunity,
- querySearchAllDisabledCommunity,
- querySearchCommunity,
- queryEnableCommunity,
-} from './queryComunity';
-export {
- queryDebt,
- querySearchDebt,
- queryCancalDebt,
- queryCreateDebts,
- querySearchDebts,
- querySearchAllDebts,
- querySearchAllCommunitiesDebts,
- querySearchDebtsPerson,
- queryUpdateDebt,
- queryUpdatCreediteDebt,
- queryValueDebt,
-} from './queryDebt';
+export { queryTables } from './queryTables';
+export { queryViews } from './queryViews';
+export { queryCreate } from './queryCreate';
+export { queryEdit } from './queryEdit';
+export { queryDisable, queryEnable } from './queryEnableDisable';
+export { querySearch, queryShowAllEnable, queryShowAllDisable, queryVerify } from './querySearch';

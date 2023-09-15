@@ -1,8 +1,10 @@
-import { statusAction, statusButton, statusIcon } from '@/constants';
-import { CommunityModel, CreditModel, DebtModel } from '@/models';
+import { statusAction, statusButton, statusIcon, statusDialog } from '@/constants';
+import { ModelCategory } from '@/models';
 import { ImageSourcePropType, NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
-import { statusDialog } from 'src/constants/modal.const';
 import { AnyObjectSchema } from 'yup';
+/*  */
+
+type typesForm = 'create' | 'edit';
 /*  */
 
 interface Message {
@@ -29,8 +31,8 @@ interface dialogSetting {
   | undefined;
  resetAll: () => void;
  handlerHidde: () => void;
- handlerAppear: (id: number, name: string, type: statusAction) => void;
- handlerVerify: (status: boolean) => void;
+ handlerAppear: (name: string, type: statusAction, message: string) => void;
+ handlerVerify: (status: boolean) => boolean;
 }
 interface ModalSetting {
  name: string;
@@ -44,43 +46,38 @@ interface ModalSetting {
 
 /*  */
 interface CustomButtonIconProps {
- type: 'view' | 'eliminated' | 'default' | 'disabled' | 'hidde' | 'arrow-left' | 'refresh' | 'expand' | 'edit' | 'eye';
+ type:
+  | 'view'
+  | 'eliminated'
+  | 'default'
+  | 'disabled'
+  | 'hidde'
+  | 'arrow-left'
+  | 'refresh'
+  | 'expand'
+  | 'edit'
+  | 'eye';
  className?: string;
  text?: string;
  handlerPress?: () => void;
-}
-interface DebtFormProps {
- type: statusAction;
- communities: Community[] | undefined;
- entity: DebtModel;
- validationSchema: AnyObjectSchema;
- handlerSubmit: (values: DebtModel) => void;
-}
-
-interface CreditFormProps {
- type: statusAction;
- entity: CreditModel;
- validationSchema: AnyObjectSchema;
- handlerSubmit: (values: CreditModel) => void;
 }
 interface IconProps {
  type: statusIcon;
  color: string;
  size: number;
- strokeWidth:number;
+ strokeWidth: number;
 }
 interface CustomDialogProps {
  setting: dialogSetting;
 }
-interface CommunityListProps {
- button: CustomButtonProps;
+interface CustomListProps {
+ buttons: CustomButtonProps[];
  title: string;
- data: Community[] | undefined;
- handlerItem?: (id: number, name: string, type: statusAction) => void;
-}
-interface CommunityFormProps {
- entity: CommunityModel;
- handlerSubmit: (value: string) => void;
+ list: ModelCategory[] | undefined;
+ handlerItem?: () => void;
+ handlerEnable?: (id: number, name: string) => void;
+ handlerEdit?: (id: number, name: string) => void;
+ handlerEliminate?: (id: number, name: string) => void;
 }
 interface CustomButtonProps {
  type: statusButton;
@@ -88,7 +85,7 @@ interface CustomButtonProps {
  stylyButton?: string;
  stylyText?: string;
  text?: string;
- icon?:IconProps;
+ icon?: IconProps;
  handlerPress?: () => void;
 }
 interface CustomInputProps {
@@ -118,11 +115,14 @@ interface CustomPhotoProps {
 interface CustomModalProps {
  setting: ModalSetting;
 }
-interface CommunityItemProps {
+interface CustomItemProps {
  id: number;
  title: string;
- button: CustomButtonProps;
- handlerItem?: (id: number, name: string, type: statusAction) => void;
+ buttons: CustomButtonProps[];
+ handlerItem?: () => void;
+ handlerEnable?: (id: number, name: string) => void;
+ handlerEdit?: (id: number, name: string) => void;
+ handlerEliminate?: (id: number, name: string) => void;
 }
 interface CustomSelectProps {
  stylyLabel: string;
@@ -133,31 +133,43 @@ interface CustomSelectProps {
  id: string;
  handlerChange: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
 }
+interface CustomCategoryFormProps {
+ type: typesForm;
+ entity: ModelCategory;
+ validationSchema: AnyObjectSchema;
+ handlerGoBack?: () => void;
+ handlerSubmit: (values: ModelCategory) => void;
+}
 /* roots params */
 type RootStackParamList = {
  Home: undefined;
+ Vocabulary: {
+  category: string;
+ };
+ Verbs: undefined;
+ PhrasalVerbs: undefined;
+ Idioms: undefined;
+ Conversation: undefined;
 };
 type RootButtonParamList = {
-//  Home: undefined;
-//  Product: undefined;
+ //  Home: undefined;
+ //  Product: undefined;
 };
 export {
+ CustomCategoryFormProps,
  CustomButtonIconProps,
  RootButtonParamList,
  RootStackParamList,
  CustomLoadingProps,
  CustomDialogProps,
  CustomSelectProps,
- CommunityListProps,
+ CustomListProps,
  CustomButtonProps,
- CommunityItemProps,
- CommunityFormProps,
+ CustomItemProps,
  CustomInputProps,
  CustomModalProps,
  CustomPhotoProps,
- CreditFormProps,
  dialogSetting,
- DebtFormProps,
  ModalSetting,
  IconProps,
  Community,

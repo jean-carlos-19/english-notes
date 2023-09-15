@@ -1,2 +1,2 @@
-export type { CommunityController } from './community.controller';
-export type { DebtController } from './debt.controller';
+export type { ControllerCategory } from './controller.category';
+export type { ControllerVocabulary } from './controller.vocabulary';

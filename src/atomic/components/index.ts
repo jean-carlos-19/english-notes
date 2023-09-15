@@ -1,4 +1,4 @@
 export { CustomModal } from './CustomModal';
-export { CommunityForm } from './CommunityForm';
-export { CommunityList } from './CommunityList';
-export { DebtForm } from './DebtForm';
+export { CustomCategoryForm } from './CustomCategoryForm';
+export { CustomList } from './CustomList';
+export { EditCategory } from './EditCategory';

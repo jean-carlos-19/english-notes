@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { CustomModalProps } from '@/types';
 import { CustomButton, CustomPhoto } from '@/atomic/elements';
-import { imagesConst, typesButtonConst } from '@/constants';
+import { images, typesButtonConst } from '@/constants';
 
 const CustomModal = (props: CustomModalProps) => {
  const { setting } = props;
@@ -13,7 +13,7 @@ const CustomModal = (props: CustomModalProps) => {
  return (
   <View className="w-full h-full p-4 flex-col justify-center items-stretch space-y-4 bg-slate-100">
    <View className="flex justify-center items-center">
-    <CustomPhoto image={type === 'error' ? imagesConst.warning : imagesConst.success} />
+    <CustomPhoto image={type === 'error' ? images.warning : images.success} />
    </View>
    <Text className="text-gray-700 font-semibold text-2xl text-center">{message?.title}</Text>
    <Text className="text-gray-700 font-normal text-xl text-center">
@@ -23,7 +23,7 @@ const CustomModal = (props: CustomModalProps) => {
    <View>
     <CustomButton
      type={typesButtonConst.default}
-     isDisable={true}
+     isDisable={false}
      stylyText={'text-center font-semibold text-xl text-gray-700'}
      text={'Ok'}
      handlerPress={handlerHidde}

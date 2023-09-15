@@ -3960,6 +3960,13 @@ expo-file-system@~15.4.0, expo-file-system@~15.4.3:
   dependencies:
     uuid "^3.4.0"
 
+expo-file-system@~15.4.4:
+  version "15.4.4"
+  resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-15.4.4.tgz#b29e0507b57ee0cc7173cf8844aaf992e411f518"
+  integrity sha512-F0xS88D85F7qVQ61r0qBnzh6VW/s6iIl+VaQEEi2nAIOQHw1JIEj4yCXPLTtbyn5VmArbe2dSL3KYz1V+BLkKA==
+  dependencies:
+    uuid "^3.4.0"
+
 expo-font@~11.4.0:
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-11.4.0.tgz#e2d31c0bb76ba3c37c2d84703a49aeafc3afef28"
@@ -3997,10 +4004,10 @@ expo-sharing@~11.5.0:
   resolved "https://registry.yarnpkg.com/expo-sharing/-/expo-sharing-11.5.0.tgz#a8cad65874d882b7f75b12856b4ef55ea9b60a2d"
   integrity sha512-uerM5YH1FKDZXfkP9ORebvlMVOPP/AfoYgYBez6a8G9fztNYHnRCA6mgK+3aQmpnb3ltmjnAZC39kH18bTNcVw==
 
-expo-sqlite@~11.3.2:
-  version "11.3.2"
-  resolved "https://registry.yarnpkg.com/expo-sqlite/-/expo-sqlite-11.3.2.tgz#0841d57d727942315631e778c546b0ffa8b64710"
-  integrity sha512-99h4ld2R4NUU4sbJs30kxAL+kNMNb2G8pufnY2yxFXGe9vVctniP+9LFNgclmkaAkTFY2N60gi2cETnSPnsOlQ==
+expo-sqlite@~11.3.3:
+  version "11.3.3"
+  resolved "https://registry.yarnpkg.com/expo-sqlite/-/expo-sqlite-11.3.3.tgz#5b07e7ffd744d2d04fe2075ec6fac834c78a5f53"
+  integrity sha512-73n+mhwi5mO28oVVrDGYcjy28XeUjNtpXVPtEmc+sr/NQ0hKlkIf2PD3/gKsyNuI8O/twNCZxsAQdM32yHGr8A==
   dependencies:
     "@expo/websql" "^1.0.1"
 

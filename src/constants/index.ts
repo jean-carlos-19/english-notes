@@ -1,84 +1,41 @@
-import { imgWarning, imgSuccess, imgEmpty } from '@/assets';
 import { Message } from '@/types';
-/* list images */
-const imagesConst = Object.freeze({
- warning: {
-  title: '',
-  alt: '',
-  src: imgWarning,
-  size: [150, 150],
- },
- success: {
-  title: '',
-  alt: '',
-  src: imgSuccess,
-  size: [150, 150],
- },
- empty: {
-  title: '',
-  alt: '',
-  src: imgEmpty,
-  size: [500, 500],
- },
-});
-/* data form to create new community */
-const CommunityFormConst = Object.freeze({
- title: 'Crea una comunidad',
- label: 'Comunidad *',
- placeholder: 'Ej: Las lagunas',
- button: 'Guardar comunidad',
-});
-/* list enable community */
-const ListCommunityConst = Object.freeze({
- title: 'Lista de las comunidades activas',
-});
-/* list eliminate community */
-const ListCommunityDeleteConst = Object.freeze({
- title: 'Lista de las comunidades eliminadas',
-});
-/* data */
-const debtFormConst = Object.freeze({
- title: '',
- community: {
-  label: 'Comunidad',
-  placeholder: 'Ej: Las lagunas',
- },
- customer: {
-  label: 'Cliente',
-  placeholder: 'Ej: Jean',
- },
- description: {
-  label: 'Description',
-  placeholder: 'Ej: jarabe de tutuma',
- },
- value: {
-  label: 'Valor',
-  placeholder: 'Ej: $5',
- },
-});
 
-const mocalAddCommunityConst = Object.freeze<Message>({
- title: 'Creacion de comunidad',
- text: 'Se ha creado la comunidad: ',
+/*  */
+const messageRefresh = Object.freeze<Message>({
+ title: 'Message loading',
+ text: 'please wait ...',
 });
-
-const messageRefreshConst = Object.freeze<Message>({
- title: 'Refrescando la informacion',
- text: 'Por favor espere mientras obtnenemos los ultimos datos',
+/* types form */
+type statusForm = 'create' | 'edit';
+const typesForm = Object.freeze({
+ create: 'create',
+ edit: 'edit',
 });
 /* types buttons */
+type statusButton = 'default' | 'icon' | 'iconText';
 const typesButtonConst = Object.freeze({
  default: 'default',
  icon: 'icon',
  iconText: 'iconText',
 });
-type statusButton = 'default' | 'icon' | 'iconText';
 /* types icons */
+type statusIcon =
+ | 'view'
+ | 'eliminated'
+ | 'default'
+ | 'enable'
+ | 'hidde'
+ | 'arrow-left'
+ | 'refresh'
+ | 'expand'
+ | 'edit'
+ | 'eye'
+ | 'create';
 const typesIconConst = Object.freeze({
  view: 'view',
  elimited: 'eliminated',
  default: 'default',
- disabled: 'disabled',
+ enable: 'enable',
  hidde: 'hidde',
  arrowLeft: 'arrow-left',
  refresh: 'refresh',
@@ -87,18 +44,8 @@ const typesIconConst = Object.freeze({
  eye: 'eye',
  create: 'create',
 });
-type statusIcon =
- | 'view'
- | 'eliminated'
- | 'default'
- | 'disabled'
- | 'hidde'
- | 'arrow-left'
- | 'refresh'
- | 'expand'
- | 'edit'
- | 'eye'
- | 'create';
+/*  */
+type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
 const typesAction = Object.freeze({
  enable: 'enable',
  create: 'create',
@@ -108,45 +55,26 @@ const typesAction = Object.freeze({
  cancel: 'cancel',
 });
 
-type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
-const Root = Object.freeze({
- Home: 'Inicio',
- Profile: 'Perfil',
- Debt: 'Deduor',
- community: 'Comunidad',
- HomeTabs: 'Inicio Tab',
- Product: 'Producto',
+/*  */
+type statusDialog = 'success' | 'error';
+const typesStatusDialog = Object.freeze({
+ success: 'success',
+ error: 'error',
 });
 
+export { messageSuccessCategory, messageCategoryDialog } from './message.successful.const';
+export { images } from './images.const';
+
 export {
- DialogUpdateDebtConst,
- dialogCancelDebtConst,
- dialogElimitedCommunityConst,
- dialogEnableCommunityConst,
-} from './dialog.const';
-export {
- modalAddDebtConst,
- typesStatusDialog,
- ModalCommunityConst,
- ModalUpdateDebtConst,
- modalCancelDebtConst,
- modalDeleteCommunityConst,
- modalEnableCommunityConst,
- ModalUpdateCreditDebtConst,
-} from './modal.const';
-export {
- ListCommunityDeleteConst,
- mocalAddCommunityConst,
- messageRefreshConst,
- CommunityFormConst,
- ListCommunityConst,
- typesButtonConst,
+ typesForm,
+ typesAction,
  typesIconConst,
- debtFormConst,
- imagesConst,
+ messageRefresh,
+ typesButtonConst,
+ typesStatusDialog,
+ statusForm,
+ statusIcon,
+ statusDialog,
  statusAction,
  statusButton,
- typesAction,
- statusIcon,
- Root,
 };

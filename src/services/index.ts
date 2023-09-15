@@ -1,2 +1,2 @@
-export { CommunityService } from './community.service';
-export { DebtService } from './debt.service';
+export { ServiceCategory } from './service.category';
+export { ServiceVocabulary } from './service.vocabulary';

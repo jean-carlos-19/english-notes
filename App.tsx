@@ -1,9 +1,9 @@
-import { NavigationContainer} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LogBox } from "react-native";
 import { RootStackParamList, RootButtonParamList } from '@/types'
-import {  HomeScreen, } from "@/screens";
+import { HomeScreen, CategoryScreen } from "@/screens";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<RootButtonParamList>();
@@ -25,6 +25,11 @@ export default function App() {
           name="Home"
           options={{ headerShown: false }}
           component={HomeScreen}
+        />
+        <Stack.Screen
+          name="Vocabulary"
+          options={{ headerShown: false }}
+          component={CategoryScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

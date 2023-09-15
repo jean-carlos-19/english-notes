@@ -10,9 +10,9 @@ const useModal = (isOpen: boolean, type: statusDialog, isSureGoBack: boolean) =>
  const navigation = useNavigation();
 
  const handlerHidde = () => {
-     if (isSureGoBack) {
-      navigation.goBack();
-      setIsActivate(false);
+  if (isSureGoBack) {
+   navigation.goBack();
+   setIsActivate(false);
   }
   setIsActivate(false);
  };

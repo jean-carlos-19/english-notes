@@ -6,14 +6,13 @@ import { typesButtonConst } from '@/constants';
 
 const CustomButton = (props: CustomButtonProps) => {
  const { stylyButton, stylyText, isDisable, text, type, icon, handlerPress } = props;
- 
 
  if (type === typesButtonConst.default)
   return (
    <TouchableOpacity
-    className={isDisable ? stylyButton : 'bg-gray-400 p-4 rounded-xl'}
+    className={isDisable ? 'bg-gray-300 p-4 rounded-xl' : stylyButton}
     onPress={handlerPress}
-    disabled={!isDisable}
+    disabled={isDisable}
    >
     <Text className={stylyText}>{text}</Text>
    </TouchableOpacity>
