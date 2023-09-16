@@ -110,7 +110,7 @@ const useCategory = () => {
  const handlerRefresAll = () => {
   updateAll();
  };
-
+ /* create new category */
  const create = async (values: ModelCategory) => {
   setIsLoading(true);
   try {
@@ -122,11 +122,10 @@ const useCategory = () => {
    setIsLoading(false);
   }
  };
-
+ /* edit new category */
  const edit = async (values: ModelCategory) => {
   setIsLoading(true);
   try {
-   console.log(values);
    await service.edit(values);
    setEdition(false);
    await updateAll();
@@ -136,7 +135,21 @@ const useCategory = () => {
    setIsLoading(false);
   }
  };
-
+ /* search a cetgory */
+ const search = async (values: ModelCategory) => {
+  setIsLoading(true);
+  try {
+   const rs = await service.search(values.name);
+   const data = (rs as SQLite.ResultSet[])[0].rows;
+   setCategories(data as ModelCategory[]);
+   if (values.name === '' || !values.name) await updateAll();
+  } catch (error) {
+   console.log('Error al verificar la categoria: ' + error);
+  } finally {
+   setIsLoading(false);
+  }
+ };
+ /* disable a category */
  const disable = async (id: number) => {
   setIsLoading(true);
   try {
@@ -148,7 +161,7 @@ const useCategory = () => {
    setIsLoading(false);
   }
  };
-
+ /* enable a category */
  const enable = async (id: number) => {
   setIsLoading(true);
   try {
@@ -160,7 +173,7 @@ const useCategory = () => {
    setIsLoading(false);
   }
  };
-
+ /* verify category */
  const verify = async (id: number) => {
   setIsLoading(true);
   try {
@@ -173,7 +186,7 @@ const useCategory = () => {
    setIsLoading(false);
   }
  };
-
+ /* search all enable category  */
  const searchAllEnable = async () => {
   try {
    const rs = await service.showAllEnable();
@@ -183,7 +196,7 @@ const useCategory = () => {
    console.log('Error al buscar todas las categorias habilitadas categoria: ' + error);
   }
  };
-
+ /* search all disable category */
  const searchAllDisabled = async () => {
   try {
    const rs = await service.showAllDisable();
@@ -228,22 +241,23 @@ const useCategory = () => {
  return {
   dialog,
   isEnable,
-  modalSetting,
   isLoading,
   category,
   isEdition,
   categories,
+  modalSetting,
   disabledCategories,
+  search,
   goBack,
   enable,
+  handlerSave,
+  handlerEdit,
   handlerEdition,
-  handlerHiddeDisable,
   handlerEnable,
   handlerDisable,
   handlerRefresAll,
+  handlerHiddeDisable,
   handlerAppearDisable,
-  handlerEdit,
-  handlerSave,
   handlerHiddeEdition,
  };
 };

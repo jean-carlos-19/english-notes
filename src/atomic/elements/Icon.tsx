@@ -6,13 +6,16 @@ import {
  TrashIcon,
  XMarkIcon,
  CheckIcon,
- ArrowPathIcon,
  ArrowsPointingOutIcon,
  EyeIcon,
  PencilIcon,
  PlusCircleIcon,
+ SpeakerWaveIcon,
+ EyeSlashIcon,
+ MagnifyingGlassIcon,
+ ArrowLeftCircleIcon,
+ ArrowPathIcon,
 } from 'react-native-heroicons/solid';
-import { ArrowLeftCircleIcon } from 'react-native-heroicons/outline';
 
 const Icon = (props: IconProps) => {
  const { type, color, size, strokeWidth } = props;
@@ -38,7 +41,12 @@ const Icon = (props: IconProps) => {
   return <PencilIcon size={size} color={color} strokeWidth={strokeWidth} />;
  if (type === typesIconConst.create)
   return <PlusCircleIcon size={size} color={color} strokeWidth={strokeWidth} />;
-
+ if (type === typesIconConst.MicrophoneIcon)
+  return <SpeakerWaveIcon size={size} color={color} strokeWidth={strokeWidth} />;
+ if (type === typesIconConst.EyeSlashIcon)
+  return <EyeSlashIcon size={size} color={color} strokeWidth={strokeWidth} />;
+ if (type === typesIconConst.MagnifyingGlassIcon)
+  return <MagnifyingGlassIcon size={size} color={color} strokeWidth={strokeWidth} />;
  return null;
 };
 

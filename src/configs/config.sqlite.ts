@@ -4,7 +4,7 @@ import * as SQLite from 'expo-sqlite';
 
 abstract class ConfigSqlite {
  public createDataBase = async () => {
-  //   await FileSystem.deleteAsync(FileSystem.documentDirectory + 'SQLite');
+  // await FileSystem.deleteAsync(FileSystem.documentDirectory + 'SQLite');
   if (!(await FileSystem.getInfoAsync(FileSystem.documentDirectory + 'SQLite')).exists) {
    await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'SQLite');
   }

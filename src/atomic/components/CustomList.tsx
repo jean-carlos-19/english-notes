@@ -1,13 +1,33 @@
-import { CustomListProps } from '@/types';
 import React from 'react';
 import { Text, View } from 'react-native';
-import { CustomItem } from '../elements';
+import { CustomListProps } from '@/types';
+import { CustomItem } from '@/atomic/elements';
+import { CustomSearchForm } from './CustomSearchForm';
+import { ModelCategory } from '@/models';
 
 const CustomList = (props: CustomListProps) => {
- const { title, buttons, list, handlerItem, handlerEdit, handlerEliminate, handlerEnable } = props;
+ const {
+  title,
+  buttons,
+  list,
+  searchForm,
+  handlerItem,
+  handlerEdit,
+  handlerEliminate,
+  handlerEnable,
+ } = props;
  return (
-  <View className="bg-blue-400 p-4 rounded-xl">
-   <Text className="text-xl font-semibold text-slate-100 text-center"> {title} </Text>
+  <View className="bg-white p-4 rounded-xl space-y-4">
+    {/* title list */}
+   <Text className="text-xl font-semibold text-blue-900 text-center"> {title} </Text>
+   <View></View>
+   {/* Search form */}
+   <CustomSearchForm
+    entity={searchForm.entity}
+    validationSchema={searchForm.validationSchema}
+    handlerSubmit={searchForm.handlerSubmit}
+   />
+   {/* items */}
    {list?.map((item, i) => (
     <CustomItem
      key={i}

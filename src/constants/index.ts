@@ -30,7 +30,10 @@ type statusIcon =
  | 'expand'
  | 'edit'
  | 'eye'
- | 'create';
+ | 'create'
+ | 'MicrophoneIcon'
+ | 'EyeSlashIcon'
+ | 'MagnifyingGlassIcon';
 const typesIconConst = Object.freeze({
  view: 'view',
  elimited: 'eliminated',
@@ -43,6 +46,9 @@ const typesIconConst = Object.freeze({
  edit: 'edit',
  eye: 'eye',
  create: 'create',
+ MicrophoneIcon: 'MicrophoneIcon',
+ EyeSlashIcon: 'EyeSlashIcon',
+ MagnifyingGlassIcon: 'MagnifyingGlassIcon',
 });
 /*  */
 type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';

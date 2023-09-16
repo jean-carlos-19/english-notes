@@ -71,6 +71,11 @@ interface CustomDialogProps {
  setting: dialogSetting;
 }
 interface CustomListProps {
+ searchForm: {
+  entity: ModelCategory;
+  validationSchema: AnyObjectSchema;
+  handlerSubmit: (values: ModelCategory) => void;
+ };
  buttons: CustomButtonProps[];
  title: string;
  list: ModelCategory[] | undefined;
@@ -140,9 +145,16 @@ interface CustomCategoryFormProps {
  handlerGoBack?: () => void;
  handlerSubmit: (values: ModelCategory) => void;
 }
-/* roots params */
+interface CustomSearchFormProps {
+ entity: ModelCategory;
+ validationSchema: AnyObjectSchema;
+ handlerGoBack?: () => void;
+ handlerSubmit: (values: ModelCategory) => void;
+}
+/* roots stck params */
 type RootStackParamList = {
  Home: undefined;
+ Category:undefined;
  Vocabulary: {
   category: string;
  };
@@ -157,6 +169,7 @@ type RootButtonParamList = {
 };
 export {
  CustomCategoryFormProps,
+ CustomSearchFormProps,
  CustomButtonIconProps,
  RootButtonParamList,
  RootStackParamList,

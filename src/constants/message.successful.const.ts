@@ -1,7 +1,7 @@
 /*  */
 const messageCategoryDialog = Object.freeze({
  create: '',
- edit: '¿Are you sure update the category??',
+ edit: '¿Are you sure update the category?',
  disable: '¿are you sure eliminate the category?',
  enable: '¿are you sure enable the category ? ',
 });

@@ -12,8 +12,8 @@ const queryShowAllDisable = Object.freeze({
  Vocabularies: `select idVocabulary, name from showAllDisableVocabularies;`,
 });
 const querySearch = Object.freeze({
- Categories: `select idCategory, name from showAllEnableCategories where name like ?||%;`,
- Vocabularies: `select idVocabulary, name from showAllEnableVocabularies where name like ?||%;`,
+ Categories: `select idCategory, name from showAllEnableCategories where name like ?||'%';`,
+ Vocabularies: `select idVocabulary, name from showAllEnableVocabularies where name like ?||'%';`,
 });
 
 export { querySearch, queryShowAllEnable, queryShowAllDisable, queryVerify };
