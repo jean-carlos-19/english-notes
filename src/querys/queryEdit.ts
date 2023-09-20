@@ -1,11 +1,11 @@
 const Category = `
 update categories set
-name = ?
+category = ?
 where idCategory = ?;
 `;
 const Vocabulary = `
 update vocabularies set
-name = ?,
+vocabulary = ?,
 translation = ?
 where idVocabulary = ?;
 `;

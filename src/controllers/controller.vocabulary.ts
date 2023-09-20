@@ -1,21 +1,27 @@
-import { ModelCategory } from '@/models';
+import { ModelVocabulary } from '@/models';
 import * as SQLite from 'expo-sqlite';
 
 interface ControllerVocabulary {
  create: (
-  vocabulary: ModelCategory,
+  vocabulary: ModelVocabulary,
+  idCategory: number,
  ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  enable: (
-  vocabulary: ModelCategory,
+  idVocabulary: number,
  ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  disable: (
-  vocabulary: ModelCategory,
+  idVocabulary: number,
  ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  edit: (
-  vocabulary: ModelCategory,
+  vocabulary: ModelVocabulary,
  ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
+ verify: (id: number) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  search: (name: string) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
- showAllEnable: () => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
- showAllDisable: () => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
+ showAllEnable: (
+  idCategory: number,
+ ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
+ showAllDisable: (
+  idCategory: number,
+ ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
 }
 export type { ControllerVocabulary };

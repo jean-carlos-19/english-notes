@@ -12,7 +12,7 @@ const CustomDialog = (props: CustomDialogProps) => {
 
  return (
   <View className="p-4 absolute top-0 z-10 w-full h-full bg-sky-100 flex-row items-center justify-stretch">
-    {/* body dialog */}
+   {/* body dialog */}
    <View className="px-4 py-8 flex-1 space-y-4 bg-white rounded-xl">
     {/* title and message dialog */}
     <Text className="text-2xl font-semibold text-center text-slate-800">
@@ -20,28 +20,31 @@ const CustomDialog = (props: CustomDialogProps) => {
     </Text>
     <Text className="text-xl text-slate-800 text-center">
      {content?.message.text}
-     <Text className="text-xl font-semibold text-center text-slate-800"> {content?.name} </Text>{' '}
+     <Text className="text-xl font-semibold text-center text-slate-800">
+      {' '}
+      {content?.name}{' '}
+     </Text>{' '}
     </Text>
     {/* button primary dialog */}
     <View></View>
-     <CustomButton
-      type={typesButtonConst.default}
-      isDisable={false}
-      stylyButton={'p-4 rounded-xl bg-blue-500'}
-      stylyText={'text-xl text-slate-200 text-center font-semibold'}
-      text={'Yes'}
-      handlerPress={() => handlerVerify(true)}
-     />
+    <CustomButton
+     type={typesButtonConst.default}
+     isDisable={false}
+     stylyButton={'p-4 rounded-xl bg-blue-500'}
+     stylyText={'text-xl text-slate-200 text-center font-semibold'}
+     text={'Yes'}
+     handlerPress={() => handlerVerify(true)}
+    />
     {/* button secundary dialog */}
     <View></View>
-     <CustomButton
-      type={typesButtonConst.default}
-      isDisable={false}
-      stylyButton={'p-4 rounded-xl bg-slate-200'}
-      stylyText={'text-xl text-slate-600 text-center font-semibold'}
-      text={'No'}
-      handlerPress={() => handlerVerify(false)}
-     />
+    <CustomButton
+     type={typesButtonConst.default}
+     isDisable={false}
+     stylyButton={'p-4 rounded-xl bg-slate-200'}
+     stylyText={'text-xl text-slate-600 text-center font-semibold'}
+     text={'No'}
+     handlerPress={() => handlerVerify(false)}
+    />
    </View>
   </View>
  );

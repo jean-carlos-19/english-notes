@@ -17,7 +17,10 @@ class ServiceCategory extends ConfigSqlite implements ControllerCategory {
  public create = async (
   category: ModelCategory,
  ): Promise<(ResultSetError | ResultSet)[] | undefined> => {
-  return await this.db?.execAsync([this.customQuery(queryCreate.Category, [category.name])], false);
+  return await this.db?.execAsync(
+   [this.customQuery(queryCreate.Category, [category.category])],
+   false,
+  );
  };
  public enable = async (id: number): Promise<(ResultSetError | ResultSet)[] | undefined> => {
   return await this.db?.execAsync([this.customQuery(queryEnable.Category, [id])], false);
@@ -29,7 +32,7 @@ class ServiceCategory extends ConfigSqlite implements ControllerCategory {
   category: ModelCategory,
  ): Promise<(ResultSetError | ResultSet)[] | undefined> => {
   return await this.db?.execAsync(
-   [this.customQuery(queryEdit.Category, [category.name, category.idCategory])],
+   [this.customQuery(queryEdit.Category, [category.category, category.idCategory])],
    false,
   );
  };

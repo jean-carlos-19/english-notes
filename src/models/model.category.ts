@@ -1,5 +1,5 @@
 interface ModelCategory {
- idCategory?: number;
- name: string;
+ idCategory?: number | undefined;
+ category: string | undefined;
 }
 export type { ModelCategory };

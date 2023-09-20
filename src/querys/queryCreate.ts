@@ -1,5 +1,5 @@
-const Category = `insert into categories(name) values(?); `;
-const Vocabulary = ` insert into vocabularies(category,name,translation) values(?,?,?);`;
+const Category = `insert into categories(category) values(?); `;
+const Vocabulary = ` insert into vocabularies(idCategory,vocabulary,translation) values(?,?,?);`;
 const queryCreate = Object.freeze({
  Category,
  Vocabulary,

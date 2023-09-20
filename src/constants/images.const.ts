@@ -1,4 +1,4 @@
-import { imgWarning, imgSuccess, imgEmpty } from '@/assets';
+import { imgWarning, imgSuccess, imgEmpty, imgLoad } from '@/assets';
 /* list images */
 const images = Object.freeze({
  warning: {
@@ -18,6 +18,12 @@ const images = Object.freeze({
   alt: '',
   src: imgEmpty,
   size: [500, 500],
+ },
+ load: {
+  title: '',
+  alt: '',
+  src: imgLoad,
+  size: [200, 200],
  },
 });
 export { images };

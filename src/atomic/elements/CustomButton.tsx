@@ -10,9 +10,9 @@ const CustomButton = (props: CustomButtonProps) => {
  if (type === typesButtonConst.default)
   return (
    <TouchableOpacity
-    className={isDisable ? 'bg-gray-300 p-4 rounded-xl' : stylyButton}
-    onPress={handlerPress}
+    className={isDisable ? 'p-4 bg-gray-400 rounded-xl' : stylyButton}
     disabled={isDisable}
+    onPress={handlerPress}
    >
     <Text className={stylyText}>{text}</Text>
    </TouchableOpacity>

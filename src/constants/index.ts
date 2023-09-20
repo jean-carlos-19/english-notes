@@ -68,7 +68,12 @@ const typesStatusDialog = Object.freeze({
  error: 'error',
 });
 
-export { messageSuccessCategory, messageCategoryDialog } from './message.successful.const';
+export {
+ messageSuccessCategory,
+ messageCategoryDialog,
+ messageSuccessVocabulary,
+ messageVocabularyDialog,
+} from './message.successful.const';
 export { images } from './images.const';
 
 export {

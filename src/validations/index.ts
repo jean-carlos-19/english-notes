@@ -1,20 +1,19 @@
-import { ModelCategory } from '@/models';
+import * as SQLite from 'expo-sqlite';
+import { ModelCategory, ModelVocabulary } from '@/models';
 import { object, string } from 'yup';
 import { ServiceCategory } from '@/services';
 const serviceCategory = ServiceCategory.getService();
 
 const validationCategory = object<ModelCategory>({
- name: string()
-  .required('Ingrese una categoria')
-  .test('', '', async (value) => {
+ category: string()
+  .required('Enter a category')
+  .test('', 'Category exist', async (value) => {
    const rs = await serviceCategory.search(value);
-   //  console.log(rs);
-   return true;
+   return !((rs as SQLite.ResultSet[])[0].rows.length > 0);
   }),
 });
-const validationVocabulary = Object({
- category: string().required('Ingrese una categoria '),
- name: string().required('Ingrese un nombre'),
- translation: string().required('Ingrese la traduccion'),
+const validationVocabulary = object<ModelVocabulary>({
+ vocabulary: string().required('Enter a vocabulary'),
+ translation: string().required('Enter ypur translation'),
 });
 export { validationCategory, validationVocabulary };

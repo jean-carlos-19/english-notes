@@ -17,7 +17,7 @@ const service: ServiceCategory = ServiceCategory.getService();
 const useCategory = () => {
  const navigation = useNavigation();
  const [category, setCategory] = useState<ModelCategory>({
-  name: '',
+  category: '',
  });
  const [categories, setCategories] = useState<ModelCategory[]>([]);
  const [disabledCategories, setDisabledCategories] = useState<ModelCategory[]>([]);
@@ -25,24 +25,26 @@ const useCategory = () => {
  const [isLoading, setIsLoading] = useState<boolean>(false);
  const [isEnable, setIsEnable] = useState<boolean>(false);
  const {
+  type,
+  content,
   isActivate,
   decisition,
-  content,
-  type,
+  resetDialog,
+  handlerHidde,
   handlerAppear,
   handlerVerify,
-  handlerHidde,
-  resetAll,
  } = useDialog();
 
  const { modalSetting, handlerStatus } = useModal(false, typesStatusDialog.success, false);
-
- const goBack = () => navigation.goBack();
 
  useEffect(() => {
   initializeDatabase();
  }, []);
 
+ /* go back screen  */
+ const goBack = () => navigation.goBack();
+
+ /* initialize database */
  const initializeDatabase = async () => {
   setIsLoading(true);
   try {
@@ -55,36 +57,30 @@ const useCategory = () => {
   }
  };
 
- const updateAll = async () => {
-  setIsLoading(true);
-  try {
-   await searchAllEnable();
-   await searchAllDisabled();
-   await reselAll();
-  } catch (error) {
-   console.log('Error al crear la categoria: ' + error);
-  } finally {
-   setIsLoading(false);
-  }
+ /* hanlder to update all category information */
+ const handlerRefresAll = () => {
+  updateAll();
  };
 
+ /* handler to create a new category */
  const handlerSave = (values: ModelCategory) => {
   create(values);
-  handlerStatus(messageSuccessCategory.create, true, values.name);
+  handlerStatus(messageSuccessCategory.create, true, values.category);
  };
 
+ /* handler to edit a new category */
  const handlerEdit = (values: ModelCategory) => {
-  handlerAppear(values.name, typesAction.edit, messageCategoryDialog.edit);
+  handlerAppear(values.category, typesAction.edit, messageCategoryDialog.edit);
   setCategory(values);
-  // edit(values);
-  // handlerStatus(messageSuccessCategory.edit, true, values.name);
  };
 
+ /* handler to display the screen edition */
  const handlerEdition = (id: number, name: string) => {
   setEdition(!isEdition);
   verify(id);
  };
 
+ /* handler to hidde the screen edition */
  const handlerHiddeEdition = () => {
   setEdition(!isEdition);
  };
@@ -97,20 +93,33 @@ const useCategory = () => {
   setIsEnable(false);
  };
 
- const handlerDisable = (id: number, name: string) => {
-  handlerAppear(name, typesAction.eliminate, messageCategoryDialog.disable);
-  setCategory({ idCategory: id, name });
+ /* handler to disable one category */
+ const handlerDisable = (id: number, category: string) => {
+  handlerAppear(category, typesAction.eliminate, messageCategoryDialog.disable);
+  setCategory({ idCategory: id, category });
  };
 
- const handlerEnable = (id: number, name: string) => {
-  handlerAppear(name, typesAction.enable, messageCategoryDialog.enable);
-  setCategory({ idCategory: id, name });
+ /* handler to enable one category */
+ const handlerEnable = (id: number, category: string) => {
+  handlerAppear(category, typesAction.enable, messageCategoryDialog.enable);
+  setCategory({ idCategory: id, category });
  };
 
- const handlerRefresAll = () => {
-  updateAll();
+ /* update all category information */
+ const updateAll = async () => {
+  setIsLoading(true);
+  try {
+   await resetAll();
+   await searchAllEnable();
+   await searchAllDisabled();
+  } catch (error) {
+   console.log('Error al crear la categoria: ' + error);
+  } finally {
+   setIsLoading(false);
+  }
  };
- /* create new category */
+
+ /* create a new category */
  const create = async (values: ModelCategory) => {
   setIsLoading(true);
   try {
@@ -122,7 +131,7 @@ const useCategory = () => {
    setIsLoading(false);
   }
  };
- /* edit new category */
+ /* edit a new category */
  const edit = async (values: ModelCategory) => {
   setIsLoading(true);
   try {
@@ -139,10 +148,10 @@ const useCategory = () => {
  const search = async (values: ModelCategory) => {
   setIsLoading(true);
   try {
-   const rs = await service.search(values.name);
+   const rs = await service.search(values.category);
    const data = (rs as SQLite.ResultSet[])[0].rows;
    setCategories(data as ModelCategory[]);
-   if (values.name === '' || !values.name) await updateAll();
+   if (values.category === '' || !values.category) await updateAll();
   } catch (error) {
    console.log('Error al verificar la categoria: ' + error);
   } finally {
@@ -207,26 +216,27 @@ const useCategory = () => {
   }
  };
 
- const reselAll = () => {
+ const resetAll = () => {
   setCategory({
-   name: '',
+   idCategory: 0,
+   category: '',
   });
  };
 
  if (decisition && type === typesAction.eliminate && category?.idCategory) {
   disable(category.idCategory);
   handlerHidde();
-  handlerStatus(messageSuccessCategory.disable, true, category.name);
+  handlerStatus(messageSuccessCategory.disable, true, category.category);
  }
  if (decisition && type === typesAction.enable && category?.idCategory) {
   enable(category.idCategory);
   handlerHidde();
-  handlerStatus(messageSuccessCategory.enable, true, category.name);
+  handlerStatus(messageSuccessCategory.enable, true, category.category);
  }
  if (decisition && type === typesAction.edit && category?.idCategory) {
   edit(category);
   handlerHidde();
-  handlerStatus(messageSuccessCategory.edit, true, category.name);
+  handlerStatus(messageSuccessCategory.edit, true, category.category);
  }
 
  const dialog = Object.freeze({
@@ -235,7 +245,7 @@ const useCategory = () => {
   handlerAppear,
   handlerVerify,
   handlerHidde,
-  resetAll,
+  resetAll: resetDialog,
  });
 
  return {

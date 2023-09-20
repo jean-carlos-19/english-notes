@@ -1,19 +1,19 @@
 const queryVerify = Object.freeze({
- Categories: `select idCategory, name from showAllEnableCategories where idCategory = ?;`,
+ Categories: `select idCategory, category from showAllEnableCategories where idCategory = ?;`,
  Vocabularies: `select * from showAllEnableVocabularies where idVocabulary = ?;`,
 });
 
 const queryShowAllEnable = Object.freeze({
- Categories: `select idCategory, name from showAllEnableCategories;`,
- Vocabularies: `select idVocabulary, name from showAllEnableVocabularies;`,
+ Categories: `select idCategory, category from showAllEnableCategories;`,
+ Vocabularies: `select idVocabulary, vocabulary from showAllEnableVocabularies where idCategory = ?;`,
 });
 const queryShowAllDisable = Object.freeze({
- Categories: `select idCategory, name from showAllDisableCategories;`,
- Vocabularies: `select idVocabulary, name from showAllDisableVocabularies;`,
+ Categories: `select idCategory, category from showAllDisableCategories;`,
+ Vocabularies: `select idVocabulary, vocabulary from showAllDisableVocabularies where idCategory = ?;`,
 });
 const querySearch = Object.freeze({
- Categories: `select idCategory, name from showAllEnableCategories where name like ?||'%';`,
- Vocabularies: `select idVocabulary, name from showAllEnableVocabularies where name like ?||'%';`,
+ Categories: `select idCategory, category from showAllEnableCategories where category = ?;`,
+ Vocabularies: `select idVocabulary, vocabulary from showAllEnableVocabularies where vocabulary = ?;`,
 });
 
 export { querySearch, queryShowAllEnable, queryShowAllDisable, queryVerify };

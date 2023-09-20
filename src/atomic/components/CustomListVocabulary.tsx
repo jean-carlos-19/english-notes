@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { CustomListProps } from '@/types';
+import { CustomLisVocabularytProps } from '@/types';
 import { CustomItem, CustomPhoto } from '@/atomic/elements';
 import { CustomSearchForm } from './CustomSearchForm';
 import { ModelCategory } from '@/models';
 import { images } from '@/constants';
 
-const CustomList = (props: CustomListProps) => {
+const CustomListVocabulary = (props: CustomLisVocabularytProps) => {
  const {
   title,
   buttons,
@@ -16,7 +16,6 @@ const CustomList = (props: CustomListProps) => {
   handlerEdit,
   handlerEliminate,
   handlerEnable,
-  goScreen,
  } = props;
  return (
   <View className="flex-1 bg-white p-4 rounded-xl space-y-4">
@@ -38,14 +37,13 @@ const CustomList = (props: CustomListProps) => {
     list?.map((item, i) => (
      <CustomItem
       key={i}
-      id={item?.idCategory!}
-      title={item.category}
+      id={item?.idVocabulary!}
+      title={item.vocabulary}
       buttons={buttons}
       handlerItem={handlerItem}
       handlerEdit={handlerEdit}
       handlerEliminate={handlerEliminate}
       handlerEnable={handlerEnable}
-      goScreen={goScreen}
      />
     ))
    )}
@@ -53,4 +51,4 @@ const CustomList = (props: CustomListProps) => {
  );
 };
 
-export { CustomList };
+export { CustomListVocabulary };

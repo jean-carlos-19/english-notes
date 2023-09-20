@@ -30,7 +30,7 @@ const useDialog = () => {
   setDecisition(false);
  };
 
- const resetAll = () => {
+ const resetDialog = () => {
   setDecisition(false);
  };
 
@@ -42,7 +42,7 @@ const useDialog = () => {
   handlerHidde,
   handlerAppear,
   handlerVerify,
-  resetAll,
+  resetDialog,
  };
 };
 export { useDialog };

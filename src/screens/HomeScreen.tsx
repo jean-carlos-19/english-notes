@@ -34,9 +34,9 @@ const HomeScreen = () => {
      handlerPress={goScreenCategory}
     />
     <View></View>
-     {/* button screen verbs */}
+    {/* button screen verbs */}
     <CustomButton
-     isDisable={false}
+     isDisable={true}
      stylyButton={`p-4 bg-blue-500 rounded-xl`}
      stylyText="text-xl text-sky-100 font-bold text-center"
      type={typesButtonConst.default}
@@ -44,9 +44,9 @@ const HomeScreen = () => {
      handlerPress={goScreenVerbs}
     />
     <View></View>
-     {/* button screen phrasal verbs */}
+    {/* button screen phrasal verbs */}
     <CustomButton
-     isDisable={false}
+     isDisable={true}
      type={typesButtonConst.default}
      stylyButton={`p-4 bg-blue-500 rounded-xl`}
      stylyText="text-xl text-sky-100 font-bold text-center"
@@ -54,9 +54,9 @@ const HomeScreen = () => {
      handlerPress={goScreenPharsalVerbs}
     />
     <View></View>
-     {/* button screen idioms */}
+    {/* button screen idioms */}
     <CustomButton
-     isDisable={false}
+     isDisable={true}
      type={typesButtonConst.default}
      stylyButton={`p-4 bg-blue-500 rounded-xl`}
      stylyText="text-xl text-sky-100 font-bold text-center"
@@ -64,9 +64,9 @@ const HomeScreen = () => {
      handlerPress={goScreenIdioms}
     />
     <View></View>
-     {/* button screen conversation */}
+    {/* button screen conversation */}
     <CustomButton
-     isDisable={false}
+     isDisable={true}
      type={typesButtonConst.default}
      stylyButton={`p-4 bg-blue-500 rounded-xl`}
      stylyText="text-xl text-sky-100 font-bold text-center"

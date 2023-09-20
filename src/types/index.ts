@@ -1,5 +1,5 @@
 import { statusAction, statusButton, statusIcon, statusDialog } from '@/constants';
-import { ModelCategory } from '@/models';
+import { ModelCategory, ModelVocabulary } from '@/models';
 import { ImageSourcePropType, NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
 import { AnyObjectSchema } from 'yup';
 /*  */
@@ -79,6 +79,31 @@ interface CustomListProps {
  buttons: CustomButtonProps[];
  title: string;
  list: ModelCategory[] | undefined;
+ goScreen?: (id: number, screen: string) => void;
+ handlerItem?: () => void;
+ handlerEnable?: (id: number, name: string) => void;
+ handlerEdit?: (id: number, name: string) => void;
+ handlerEliminate?: (id: number, name: string) => void;
+}
+interface CustomItemProps {
+ id: number;
+ title: string;
+ buttons: CustomButtonProps[];
+ goScreen?: (id: number, screen: string) => void;
+ handlerItem?: () => void;
+ handlerEnable?: (id: number, name: string) => void;
+ handlerEdit?: (id: number, name: string) => void;
+ handlerEliminate?: (id: number, name: string) => void;
+}
+interface CustomLisVocabularytProps {
+ searchForm?: {
+  entity: ModelVocabulary;
+  validationSchema: AnyObjectSchema;
+  handlerSubmit: (values: ModelVocabulary) => void;
+ };
+ buttons: CustomButtonProps[];
+ title: string;
+ list: ModelVocabulary[] | undefined;
  handlerItem?: () => void;
  handlerEnable?: (id: number, name: string) => void;
  handlerEdit?: (id: number, name: string) => void;
@@ -120,15 +145,7 @@ interface CustomPhotoProps {
 interface CustomModalProps {
  setting: ModalSetting;
 }
-interface CustomItemProps {
- id: number;
- title: string;
- buttons: CustomButtonProps[];
- handlerItem?: () => void;
- handlerEnable?: (id: number, name: string) => void;
- handlerEdit?: (id: number, name: string) => void;
- handlerEliminate?: (id: number, name: string) => void;
-}
+
 interface CustomSelectProps {
  stylyLabel: string;
  stylySelect: string;
@@ -139,11 +156,20 @@ interface CustomSelectProps {
  handlerChange: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
 }
 interface CustomCategoryFormProps {
+ isVisible: boolean;
  type: typesForm;
  entity: ModelCategory;
  validationSchema: AnyObjectSchema;
  handlerGoBack?: () => void;
  handlerSubmit: (values: ModelCategory) => void;
+}
+interface CustomVocabularyFormProps {
+ isVisible: boolean;
+ type: typesForm;
+ entity: ModelVocabulary;
+ validationSchema: AnyObjectSchema;
+ handlerGoBack?: () => void;
+ handlerSubmit: (values: ModelVocabulary) => void;
 }
 interface CustomSearchFormProps {
  entity: ModelCategory;
@@ -154,8 +180,9 @@ interface CustomSearchFormProps {
 /* roots stck params */
 type RootStackParamList = {
  Home: undefined;
- Category:undefined;
+ Category: undefined;
  Vocabulary: {
+  idCategory: number;
   category: string;
  };
  Verbs: undefined;
@@ -168,6 +195,8 @@ type RootButtonParamList = {
  //  Product: undefined;
 };
 export {
+ CustomVocabularyFormProps,
+ CustomLisVocabularytProps,
  CustomCategoryFormProps,
  CustomSearchFormProps,
  CustomButtonIconProps,

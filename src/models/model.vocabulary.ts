@@ -1,7 +1,8 @@
 interface ModelVocabulary {
- idVocabulary?: number;
- category: string;
- name: string;
- translation: string;
+ idVocabulary?: number | undefined;
+ idCategory?: number | undefined;
+ category?: string | undefined;
+ vocabulary: string | undefined;
+ translation: string | undefined;
 }
 export type { ModelVocabulary };

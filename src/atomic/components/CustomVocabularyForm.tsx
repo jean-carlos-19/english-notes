@@ -1,5 +1,5 @@
-import { ModelCategory } from '@/models';
-import { CustomCategoryFormProps } from '@/types';
+import { ModelVocabulary } from '@/models';
+import { CustomVocabularyFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
@@ -7,7 +7,7 @@ import { CustomButton, CustomInput } from '../elements';
 import { typesButtonConst, typesForm, typesIconConst } from '@/constants';
 import { theme } from '../theme';
 
-const CustomCategoryForm = (props: CustomCategoryFormProps) => {
+const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
  const { entity, type, validationSchema, isVisible, handlerSubmit } = props;
  const [isActivate, setIsActivate] = useState<boolean>(isVisible);
  const handlerHiddeContent = () => {
@@ -18,7 +18,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
    enableReinitialize={true}
    validationSchema={validationSchema}
    initialValues={entity}
-   onSubmit={(values: ModelCategory, formikHelpers: FormikHelpers<ModelCategory>) => {
+   onSubmit={(values: ModelVocabulary, formikHelpers: FormikHelpers<ModelVocabulary>) => {
     formikHelpers.resetForm();
     handlerSubmit(values);
    }}
@@ -29,7 +29,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
       {/* Header */}
       <View className="flex-row justify-between items-center space-x-4">
        <Text className="text-blue-900 text-xl font-semibold text-center">
-        {type === typesForm.edit ? 'Edit Category' : 'Create Category'}
+        {type === typesForm.edit ? 'Edit vocabulary' : 'Create vocabulary'}
        </Text>
        <View></View>
        <CustomButton
@@ -50,22 +50,40 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        /* body form */
        <View className="space-y-4">
         <View></View>
-        {/* input category */}
+        {/* input vocabulary */}
         <CustomInput
          className={'flex-col justify-start items-stretch space-y-4 '}
          background={'transparent'}
-         label={'Category'}
+         label={'Vocabulary'}
          styleLabel="text-slate-500 text-xl"
          stylyText={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}
-         value={props.values.category}
+         value={props.values.vocabulary}
          placeholder={'Ej: Store'}
-         handlerChange={props.handleChange('category')}
-         hanhandlerBlur={props.handleBlur('category')}
+         handlerChange={props.handleChange('vocabulary')}
+         hanhandlerBlur={props.handleBlur('vocabulary')}
          isEditable={true}
         />
-        {/* message error category */}
-        {props.errors.category && (
-         <Text className="text-red-700 font-semibold">{props.errors.category}</Text>
+        {/* message error vocabulary */}
+        {props.errors.vocabulary && (
+         <Text className="text-red-700 font-semibold">{props.errors.vocabulary}</Text>
+        )}
+        <View></View>
+        {/* input translation */}
+        <CustomInput
+         className={'flex-col justify-start items-stretch space-y-4 '}
+         background={'transparent'}
+         label={'Translation'}
+         styleLabel="text-slate-500 text-xl"
+         stylyText={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}
+         value={props.values.translation}
+         placeholder={'Ej: Store'}
+         handlerChange={props.handleChange('translation')}
+         hanhandlerBlur={props.handleBlur('translation')}
+         isEditable={true}
+        />
+        {/* message error vocabulary */}
+        {props.errors.translation && (
+         <Text className="text-red-700 font-semibold">{props.errors.translation}</Text>
         )}
         <View></View>
         {/* button send and edit form */}
@@ -74,7 +92,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
          isDisable={!props.isValid}
          stylyButton={'p-4 bg-blue-500 rounded-xl'}
          stylyText={'text-center font-semibold text-xl text-slate-100'}
-         text={type === typesForm.edit ? 'Save changes' : 'Save category'}
+         text={type === typesForm.edit ? 'Save changes' : 'Save vocabulary'}
          handlerPress={props.handleSubmit}
         />
         {/* button omitir form */}
@@ -98,4 +116,4 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
  );
 };
 
-export { CustomCategoryForm };
+export { CustomVocabularyForm };

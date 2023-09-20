@@ -6,6 +6,7 @@ import { CustomList, CustomCategoryForm, CustomModal } from '@/atomic/components
 import { messageRefresh, typesButtonConst, typesForm, typesIconConst } from '@/constants';
 import { validationCategory } from '@/validations';
 import { useCategory } from '@/hooks';
+import { useNavigation } from '@react-navigation/native';
 
 const CategoryScreen = () => {
  const {
@@ -29,6 +30,9 @@ const CategoryScreen = () => {
   handlerHiddeEdition,
   handlerAppearDisable,
  } = useCategory();
+ const navigation = useNavigation();
+ const goScreenVocabulary = (id: number, typeCategory: string) =>
+  navigation.navigate('Vocabulary', { idCategory: id, category: typeCategory });
  /* secction loading */
  if (isLoading)
   return (
@@ -63,6 +67,7 @@ const CategoryScreen = () => {
     <View></View>
     {/* edit category form */}
     <CustomCategoryForm
+     isVisible={true}
      type={typesForm.edit}
      entity={category}
      validationSchema={validationCategory}
@@ -98,7 +103,7 @@ const CategoryScreen = () => {
      handlerEnable={handlerEnable}
      buttons={[
       {
-       stylyButton: 'p-2 bg-slate-200 rounded-xl',
+       stylyButton: 'p-2 bg-white rounded-xl',
        type: typesButtonConst.icon,
        icon: {
         type: typesIconConst.enable,
@@ -164,6 +169,7 @@ const CategoryScreen = () => {
     <View></View>
     {/* category Form */}
     <CustomCategoryForm
+     isVisible={false}
      type={typesForm.create}
      entity={category}
      validationSchema={validationCategory}
@@ -179,21 +185,22 @@ const CategoryScreen = () => {
      }}
      title="List categories"
      list={categories}
+     goScreen={goScreenVocabulary}
      handlerEdit={handlerEdition}
      handlerEliminate={handlerDisable}
      buttons={[
       {
-       stylyButton: 'p-2 bg-slate-200 rounded-xl',
+       stylyButton: 'p-2 bg-white rounded-xl',
        type: typesButtonConst.icon,
        icon: {
         type: typesIconConst.edit,
-        color: theme.white,
+        color: theme.gray,
         size: 25,
         strokeWidth: 1,
        },
       },
       {
-       stylyButton: 'p-2 bg-slate-200 rounded-xl',
+       stylyButton: 'p-2 bg-white rounded-xl',
        type: typesButtonConst.icon,
        icon: {
         type: typesIconConst.elimited,
