@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Message, ModalSetting } from '@/types';
 import { useNavigation } from '@react-navigation/native';
-import { statusDialog } from 'src/constants/modal.const';
+import { statusDialog } from '@/constants';
 
 const useModal = (isOpen: boolean, type: statusDialog, isSureGoBack: boolean) => {
  const [isActivate, setIsActivate] = useState<boolean>(isOpen);

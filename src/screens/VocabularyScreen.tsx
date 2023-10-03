@@ -1,16 +1,20 @@
 import React from 'react';
-import { ScrollView, StatusBar, Text, View } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { messageRefresh, typesButtonConst, typesForm, typesIconConst } from '@/constants';
-import { CustomListVocabulary, CustomModal, CustomVocabularyForm } from '@/atomic/components';
-import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
-import { RootStackParamList } from '@/types';
 import { theme } from '@/atomic/theme';
-import { useVocabulary } from '@/hooks';
-import { validationVocabulary } from '@/validations';
+import { RootStackParamList } from '@/types';
+import { useVocabulary, useSearch } from '@/hooks';
+import { Dimensions, StatusBar, Text, View } from 'react-native';
+import { validationVocabulary, validationSearch } from '@/validations';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
+import { messageRefresh, typesButtonConst, typesForm, typesIconConst } from '@/constants';
+import { CustomList, CustomModal, CustomVocabularyForm } from '@/atomic/components';
+
 type Props = NativeStackScreenProps<RootStackParamList, 'Vocabulary'>;
 
+const { width, height } = Dimensions.get('window');
+
 const VocabularyScreen = (props: Props) => {
+ const { search, hanlderSearch } = useSearch();
  const {
   dialog,
   isEnable,
@@ -19,21 +23,19 @@ const VocabularyScreen = (props: Props) => {
   vocabulary,
   vocabularies,
   modalSetting,
+  isLoadingSearch,
   disabledVocabularies,
-  search,
   goBack,
-  enable,
   handlerSave,
   handlerEdit,
   handlerEnable,
   handlerEdition,
   handlerDisable,
-  setVocabularies,
   handlerRefresAll,
   handlerHiddeDisable,
   handlerAppearDisable,
   handlerHiddeEdition,
- } = useVocabulary(props.route.params.idCategory, props.route.params.category);
+ } = useVocabulary(props.route.params.idCategory, props.route.params.category, search);
 
  /* secction load */
  if (isLoading)
@@ -69,12 +71,12 @@ const VocabularyScreen = (props: Props) => {
     <View></View>
     {/* edit category form */}
     <CustomVocabularyForm
-      isVisible={true}
-      type={typesForm.edit}
-      entity={vocabulary}
-      validationSchema={validationVocabulary}
-      handlerSubmit={handlerEdit}
-     />
+     isVisible={true}
+     type={typesForm.edit}
+     entity={vocabulary}
+     validationSchema={validationVocabulary}
+     handlerSubmit={handlerEdit}
+    />
    </View>
   );
  /* secction enabling */
@@ -94,9 +96,10 @@ const VocabularyScreen = (props: Props) => {
     />
     <View></View>
     {/* list categories eliminated  */}
-    <CustomListVocabulary
+    <CustomList
+     isLoading={isLoadingSearch}
      title="List categories"
-     list={disabledVocabularies}
+     items={disabledVocabularies}
      handlerEnable={handlerEnable}
      buttons={[
       {
@@ -115,10 +118,16 @@ const VocabularyScreen = (props: Props) => {
   );
 
  return (
-  <ScrollView className="w-full h-full bg-sky-100 p-4">
+  <View
+   className="w-full h-full bg-sky-100 p-4"
+   style={{
+    width,
+    height,
+   }}
+  >
    <StatusBar backgroundColor={'rgb(224 242 254)'} barStyle={'dark-content'} />
    {/* bady Vocabulary screen */}
-   <View className="flex-col justify-start items-stretch space-y-8">
+   <View className="flex-1 flex-col justify-start items-stretch space-y-8">
     {/* header */}
     <View className="flex-row justify-between items-center space-x-2">
      {/* button go back */}
@@ -172,17 +181,18 @@ const VocabularyScreen = (props: Props) => {
     <View></View>
     {/* Vocabulary form */}
     <CustomVocabularyForm
-      isVisible={false}
-      type={typesForm.create}
-      entity={vocabulary}
-      validationSchema={validationVocabulary}
-      handlerSubmit={handlerSave}
-     />
+     isVisible={false}
+     type={typesForm.create}
+     entity={vocabulary}
+     validationSchema={validationVocabulary}
+     handlerSubmit={handlerSave}
+    />
     <View></View>
     {/* List categories */}
-    <CustomListVocabulary
+    <CustomList
+     isLoading={isLoadingSearch}
      title="List vocabularies"
-     list={vocabularies}
+     items={vocabularies}
      handlerEdit={handlerEdition}
      handlerEliminate={handlerDisable}
      buttons={[
@@ -207,9 +217,14 @@ const VocabularyScreen = (props: Props) => {
        },
       },
      ]}
+     searchForm={{
+      entity: search,
+      validationSchema: validationSearch,
+      handlerSubmit: hanlderSearch,
+     }}
     />
    </View>
-  </ScrollView>
+  </View>
  );
 };
 

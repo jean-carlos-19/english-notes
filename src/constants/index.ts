@@ -33,7 +33,8 @@ type statusIcon =
  | 'create'
  | 'MicrophoneIcon'
  | 'EyeSlashIcon'
- | 'MagnifyingGlassIcon';
+ | 'MagnifyingGlassIcon'
+ | 'clock';
 const typesIconConst = Object.freeze({
  view: 'view',
  elimited: 'eliminated',
@@ -49,6 +50,7 @@ const typesIconConst = Object.freeze({
  MicrophoneIcon: 'MicrophoneIcon',
  EyeSlashIcon: 'EyeSlashIcon',
  MagnifyingGlassIcon: 'MagnifyingGlassIcon',
+ clock: 'clock',
 });
 /*  */
 type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';

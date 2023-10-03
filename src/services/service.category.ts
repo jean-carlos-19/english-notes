@@ -12,6 +12,7 @@ import {
 import { ConfigSqlite } from '@/configs';
 import { ControllerCategory } from '@/controllers';
 import { ModelCategory } from '@/models';
+import { Search } from '@/types';
 
 class ServiceCategory extends ConfigSqlite implements ControllerCategory {
  public create = async (
@@ -39,8 +40,11 @@ class ServiceCategory extends ConfigSqlite implements ControllerCategory {
  public verify = async (id: number): Promise<(ResultSetError | ResultSet)[] | undefined> => {
   return await this.db?.execAsync([this.customQuery(queryVerify.Categories, [id])], false);
  };
- public search = async (category: string): Promise<(ResultSetError | ResultSet)[] | undefined> => {
-  return await this.db?.execAsync([this.customQuery(querySearch.Categories, [category])], false);
+ public search = async (search: Search): Promise<(ResultSetError | ResultSet)[] | undefined> => {
+  return await this.db?.execAsync(
+   [this.customQuery(querySearch.Categories, [search.search])],
+   false,
+  );
  };
  public showAllEnable = async (): Promise<(ResultSetError | ResultSet)[] | undefined> => {
   return await this.db?.execAsync([this.customQuery(queryShowAllEnable.Categories, [])], false);

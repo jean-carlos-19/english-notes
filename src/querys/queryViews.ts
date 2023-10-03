@@ -11,7 +11,7 @@ const queryViews = [
     create view if not exists showAllEnableVocabularies as
     select 
         idVocabulary,
-        vocabularies.idCategory as idCategoria,
+        vocabularies.idCategory as idCategory,
         lower(categories.category) as category, 
         lower(vocabularies.vocabulary) as vocabulary, 
         lower(translation) as translation 
@@ -33,7 +33,7 @@ const queryViews = [
     create view if not exists showAllDisableVocabularies as
     select 
         idVocabulary,
-        vocabularies.idCategory as idCategoria,
+        vocabularies.idCategory as idCategory,
         lower(categories.category) as category, 
         lower(vocabularies.vocabulary) as vocabulary, 
         lower(translation) as translation

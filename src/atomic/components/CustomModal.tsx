@@ -1,14 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { CustomModalProps } from '@/types';
-import { CustomButton, CustomPhoto } from '@/atomic/elements';
 import { images, typesButtonConst } from '@/constants';
+import { CustomButton, CustomPhoto } from '@/atomic/elements';
 
 const CustomModal = (props: CustomModalProps) => {
- const { setting } = props;
- const { handlerHidde, message, isActivate, type, name } = setting;
-
- if (!isActivate) return null;
+ if (!props.setting.isActivate) return null;
 
  return (
   <View className="w-full h-full p-4 flex-col justify-center items-stretch  bg-sky-100">
@@ -16,13 +13,15 @@ const CustomModal = (props: CustomModalProps) => {
    <View className="bg-white space-y-4 px-4 py-8 rounded-xl">
     {/* photo modal */}
     <View className="flex justify-center items-center">
-     <CustomPhoto image={type === 'error' ? images.warning : images.success} />
+     <CustomPhoto image={props.setting.type === 'error' ? images.warning : images.success} />
     </View>
     {/* title and message modal */}
-    <Text className="text-gray-700 font-semibold text-2xl text-center">{message?.title}</Text>
+    <Text className="text-gray-700 font-semibold text-2xl text-center">
+     {props.setting.message?.title}
+    </Text>
     <Text className="text-gray-700 font-normal text-xl text-center">
-     {message?.text}
-     <Text className="text-gray-700 text-xl text-center font-semibold"> {name} </Text>
+     {props.setting.message?.text}
+     <Text className="text-gray-700 text-xl text-center font-semibold"> {props.setting.name} </Text>
     </Text>
     {/* Button modal */}
     <View></View>
@@ -31,7 +30,7 @@ const CustomModal = (props: CustomModalProps) => {
      isDisable={false}
      stylyText={'text-center font-semibold text-xl text-slate-100'}
      text={'Ok'}
-     handlerPress={handlerHidde}
+     handlerPress={props.setting.handlerHidde}
      stylyButton={'p-4 rounded-xl bg-blue-500'}
     />
    </View>

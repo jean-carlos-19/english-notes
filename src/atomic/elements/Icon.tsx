@@ -15,6 +15,7 @@ import {
  MagnifyingGlassIcon,
  ArrowLeftCircleIcon,
  ArrowPathIcon,
+ ClockIcon,
 } from 'react-native-heroicons/solid';
 
 const Icon = (props: IconProps) => {
@@ -47,6 +48,8 @@ const Icon = (props: IconProps) => {
   return <EyeSlashIcon size={size} color={color} strokeWidth={strokeWidth} />;
  if (type === typesIconConst.MagnifyingGlassIcon)
   return <MagnifyingGlassIcon size={size} color={color} strokeWidth={strokeWidth} />;
+ if (type === typesIconConst.clock)
+  return <ClockIcon size={size} color={color} strokeWidth={strokeWidth} />;
  return null;
 };
 

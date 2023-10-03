@@ -12,13 +12,14 @@ import {
  queryShowAllEnable,
  queryVerify,
 } from '@/querys';
+import { Search } from '@/types';
 
 class ServiceVocabulary extends ConfigSqlite implements ControllerVocabulary {
  public create = async (
   vocabulary: ModelVocabulary,
   idCategory: number,
  ): Promise<(ResultSetError | ResultSet)[] | undefined> => {
-    console.log("query - ",vocabulary,idCategory)
+  console.log('query - ', vocabulary, idCategory);
   return await this.db?.execAsync(
    [
     this.customQuery(queryCreate.Vocabulary, [
@@ -63,8 +64,14 @@ class ServiceVocabulary extends ConfigSqlite implements ControllerVocabulary {
  public verify = async (id: number): Promise<(ResultSetError | ResultSet)[] | undefined> => {
   return await this.db?.execAsync([this.customQuery(queryVerify.Vocabularies, [id])], false);
  };
- public search = async (name: string): Promise<(ResultSetError | ResultSet)[] | undefined> => {
-  return await this.db?.execAsync([this.customQuery(querySearch.Vocabularies, [name])], false);
+ public search = async (
+  search: Search,
+  category: string,
+ ): Promise<(ResultSetError | ResultSet)[] | undefined> => {
+  return await this.db?.execAsync(
+   [this.customQuery(querySearch.Vocabularies, [category, search.search, search.search])],
+   false,
+  );
  };
  public showAllEnable = async (
   idCategory: number,

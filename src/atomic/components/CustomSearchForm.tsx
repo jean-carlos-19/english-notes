@@ -1,37 +1,42 @@
 import React from 'react';
+import { theme } from '@/atomic/theme';
 import { TextInput, View } from 'react-native';
-import { ModelCategory } from '@/models';
-import { CustomSearchFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomButton } from '@/atomic/elements';
+import { CustomSearchFormProps, Search } from '@/types';
 import { typesButtonConst, typesIconConst } from '@/constants';
-import { theme } from '../theme';
+const contentSearchForm = Object.freeze({
+ search: {
+  id: 'search',
+  placeholder: 'Ej: stores',
+ },
+});
 
 const CustomSearchForm = (props: CustomSearchFormProps) => {
- const { entity, validationSchema, handlerSubmit } = props;
+ const { handlerSubmit } = props;
  return (
   <Formik
+   validationSchema={props.validationSchema}
    enableReinitialize={true}
-   initialValues={entity}
-   onSubmit={(values: ModelCategory, formikHelpers: FormikHelpers<ModelCategory>) => {
+   initialValues={props.entity}
+   onSubmit={(values: Search, formikHelpers: FormikHelpers<Search>) => {
     formikHelpers.resetForm();
-    handlerSubmit(values);
+    props.handlerSubmit(values);
    }}
   >
    {(props) => {
-    //   handlerSubmit(props.values.nam);
+    handlerSubmit(props.values);
     return (
      <View className="flex-row p-4 bg-white rounded-xl border-gray-200 border-4">
       {/* input category */}
-
       <TextInput
-       className={' flex-1 text-slate-600 text-xl'}
+       className={'flex-1 text-slate-600 text-xl'}
        multiline
-       value={props.values.name}
-       placeholder={'Ej: Search Store'}
+       value={props.values.search}
+       placeholder={contentSearchForm.search.placeholder}
        editable={true}
-       onChangeText={props.handleChange('name')}
-       onBlur={props.handleBlur('name')}
+       onChangeText={props.handleChange(contentSearchForm.search.id)}
+       onBlur={props.handleBlur(contentSearchForm.search.id)}
       />
       <View></View>
       {/* button send and edit form */}

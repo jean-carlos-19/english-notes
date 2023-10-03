@@ -11,16 +11,18 @@ import {
  typesStatusDialog,
 } from '@/constants';
 import { useModal } from './useModal';
+import { Search, Item } from '@/types';
 
 const service: ServiceCategory = ServiceCategory.getService();
 
-const useCategory = () => {
+const useCategory = (targetSearch?: Search) => {
  const navigation = useNavigation();
  const [category, setCategory] = useState<ModelCategory>({
   category: '',
  });
- const [categories, setCategories] = useState<ModelCategory[]>([]);
- const [disabledCategories, setDisabledCategories] = useState<ModelCategory[]>([]);
+ const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
+ const [categories, setCategories] = useState<Item[]>([]);
+ const [disabledCategories, setDisabledCategories] = useState<Item[]>([]);
  const [isEdition, setEdition] = useState<boolean>(false);
  const [isLoading, setIsLoading] = useState<boolean>(false);
  const [isEnable, setIsEnable] = useState<boolean>(false);
@@ -36,6 +38,9 @@ const useCategory = () => {
  } = useDialog();
 
  const { modalSetting, handlerStatus } = useModal(false, typesStatusDialog.success, false);
+ useEffect(() => {
+  if (targetSearch) search(targetSearch);
+ }, [targetSearch?.search]);
 
  useEffect(() => {
   initializeDatabase();
@@ -64,12 +69,14 @@ const useCategory = () => {
 
  /* handler to create a new category */
  const handlerSave = (values: ModelCategory) => {
+  if (!values?.category) return;
   create(values);
   handlerStatus(messageSuccessCategory.create, true, values.category);
  };
 
  /* handler to edit a new category */
  const handlerEdit = (values: ModelCategory) => {
+  if (!values?.category) return;
   handlerAppear(values.category, typesAction.edit, messageCategoryDialog.edit);
   setCategory(values);
  };
@@ -144,20 +151,7 @@ const useCategory = () => {
    setIsLoading(false);
   }
  };
- /* search a cetgory */
- const search = async (values: ModelCategory) => {
-  setIsLoading(true);
-  try {
-   const rs = await service.search(values.category);
-   const data = (rs as SQLite.ResultSet[])[0].rows;
-   setCategories(data as ModelCategory[]);
-   if (values.category === '' || !values.category) await updateAll();
-  } catch (error) {
-   console.log('Error al verificar la categoria: ' + error);
-  } finally {
-   setIsLoading(false);
-  }
- };
+
  /* disable a category */
  const disable = async (id: number) => {
   setIsLoading(true);
@@ -182,6 +176,20 @@ const useCategory = () => {
    setIsLoading(false);
   }
  };
+
+ const search = async (search: Search) => {
+  setIsLoadingSearch(true);
+  try {
+   const rs = await service.search(search);
+   const data = (rs as SQLite.ResultSet[])[0].rows;
+   const targets = data as ModelCategory[];
+   setCategories(targets.map((target) => ({ id: target.idCategory!, name: target.category! })));
+  } catch (error) {
+    console.log(error);
+  }
+  setIsLoadingSearch(false);
+ };
+
  /* verify category */
  const verify = async (id: number) => {
   setIsLoading(true);
@@ -200,7 +208,8 @@ const useCategory = () => {
   try {
    const rs = await service.showAllEnable();
    const data = (rs as SQLite.ResultSet[])[0].rows;
-   setCategories(data as ModelCategory[]);
+   const targets = data as ModelCategory[];
+   setCategories(targets.map((target) => ({ id: target.idCategory!, name: target.category! })));
   } catch (error) {
    console.log('Error al buscar todas las categorias habilitadas categoria: ' + error);
   }
@@ -210,7 +219,10 @@ const useCategory = () => {
   try {
    const rs = await service.showAllDisable();
    const data = (rs as SQLite.ResultSet[])[0].rows;
-   setDisabledCategories(data as ModelCategory[]);
+   const targets = data as ModelCategory[];
+   setDisabledCategories(
+    targets.map((target) => ({ id: target.idCategory!, name: target.category! })),
+   );
   } catch (error) {
    console.log('Error al buscar todas las categorias desabilitadas categoria: ' + error);
   }
@@ -223,17 +235,17 @@ const useCategory = () => {
   });
  };
 
- if (decisition && type === typesAction.eliminate && category?.idCategory) {
+ if (decisition && type === typesAction.eliminate && category?.idCategory && category?.category) {
   disable(category.idCategory);
   handlerHidde();
   handlerStatus(messageSuccessCategory.disable, true, category.category);
  }
- if (decisition && type === typesAction.enable && category?.idCategory) {
+ if (decisition && type === typesAction.enable && category?.idCategory && category?.category) {
   enable(category.idCategory);
   handlerHidde();
   handlerStatus(messageSuccessCategory.enable, true, category.category);
  }
- if (decisition && type === typesAction.edit && category?.idCategory) {
+ if (decisition && type === typesAction.edit && category?.idCategory && category?.category) {
   edit(category);
   handlerHidde();
   handlerStatus(messageSuccessCategory.edit, true, category.category);
@@ -251,13 +263,13 @@ const useCategory = () => {
  return {
   dialog,
   isEnable,
-  isLoading,
   category,
+  isLoading,
   isEdition,
   categories,
   modalSetting,
+  isLoadingSearch,
   disabledCategories,
-  search,
   goBack,
   enable,
   handlerSave,

@@ -1,54 +1,52 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { CustomListProps } from '@/types';
-import { CustomItem, CustomPhoto } from '@/atomic/elements';
-import { CustomSearchForm } from './CustomSearchForm';
-import { ModelCategory } from '@/models';
 import { images } from '@/constants';
+import { CustomListProps } from '@/types';
+import { ScrollView, Text, View } from 'react-native';
+import { CustomSearchForm } from '@/atomic/components';
+import { CustomItem, CustomPhoto } from '@/atomic/elements';
 
 const CustomList = (props: CustomListProps) => {
- const {
-  title,
-  buttons,
-  list,
-  searchForm,
-  handlerItem,
-  handlerEdit,
-  handlerEliminate,
-  handlerEnable,
-  goScreen,
- } = props;
  return (
   <View className="flex-1 bg-white p-4 rounded-xl space-y-4">
    {/* title list */}
-   <Text className="text-xl font-semibold text-blue-900 text-center"> {title} </Text>
+   <Text className="text-xl font-semibold text-blue-900 text-center"> {props.title} </Text>
    <View></View>
    {/* Search form */}
-   {/* <CustomSearchForm
-    entity={searchForm.entity}
-    validationSchema={searchForm.validationSchema}
-    handlerSubmit={searchForm.handlerSubmit}
-   /> */}
-   {/* items */}
-   {list === undefined || list.length <= 0 ? (
+   {props.searchForm && (
+    <CustomSearchForm
+     entity={props.searchForm.entity}
+     validationSchema={props.searchForm.validationSchema}
+     handlerSubmit={props.searchForm.handlerSubmit}
+    />
+   )}
+   {props.isLoading ? (
+    <View className="flex-1 flex-row items-start justify-center">
+     <Text className="text-xl font-semibold text-blue-900 text-center">wait please...</Text>
+    </View>
+   ) : props.items === undefined || props.items.length <= 0 ? (
     <View className="flex-1 flex-row items-center justify-center">
      <CustomPhoto image={images.empty} />
     </View>
    ) : (
-    list?.map((item, i) => (
-     <CustomItem
-      key={i}
-      id={item?.idCategory!}
-      title={item.category}
-      buttons={buttons}
-      handlerItem={handlerItem}
-      handlerEdit={handlerEdit}
-      handlerEliminate={handlerEliminate}
-      handlerEnable={handlerEnable}
-      goScreen={goScreen}
-     />
-    ))
+    <ScrollView>
+     {props.items?.map((item, i) => (
+      <CustomItem
+       key={i}
+       id={item?.id}
+       title={item.name}
+       text={item.translation}
+       buttons={props.buttons}
+       goScreen={props.goScreen}
+       handlerItem={props.handlerItem}
+       handlerEdit={props.handlerEdit}
+       handlerEnable={props.handlerEnable}
+       handlerEliminate={props.handlerEliminate}
+      />
+     ))}
+    </ScrollView>
    )}
+   {/* items */}
+   {}
   </View>
  );
 };

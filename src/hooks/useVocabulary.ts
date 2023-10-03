@@ -11,19 +11,21 @@ import { ModelVocabulary } from '@/models';
 import { useDialog } from './useDialog';
 import { useModal } from './useModal';
 import * as SQLite from 'expo-sqlite';
+import { Item, Search } from '@/types';
 
 const service: ServiceVocabulary = ServiceVocabulary.getService();
 
-const useVocabulary = (idCategory: number, category: string) => {
+const useVocabulary = (idCategory: number, category: string, targetSearch?: Search) => {
  const navigation = useNavigation();
+ const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
  const [vocabulary, setVocabulary] = useState<ModelVocabulary>({
   idCategory,
   category,
-  vocabulary:'',
-  translation:''
+  vocabulary: '',
+  translation: '',
  });
- const [vocabularies, setVocabularies] = useState<ModelVocabulary[]>([]);
- const [disabledVocabularies, setDisabledVocabularies] = useState<ModelVocabulary[]>([]);
+ const [vocabularies, setVocabularies] = useState<Item[]>([]);
+ const [disabledVocabularies, setDisabledVocabularies] = useState<Item[]>([]);
  const [isEdition, setEdition] = useState<boolean>(false);
  const [isLoading, setIsLoading] = useState<boolean>(false);
  const [isEnable, setIsEnable] = useState<boolean>(false);
@@ -49,13 +51,13 @@ const useVocabulary = (idCategory: number, category: string) => {
 
  const { modalSetting, handlerStatus } = useModal(false, typesStatusDialog.success, false);
 
- useEffect(()=>{
-  console.log(idCategory,category)
- },[idCategory,category])
-
  useEffect(() => {
   initializeDatabase();
  }, []);
+
+ useEffect(() => {
+  if (targetSearch) search(targetSearch);
+ }, [targetSearch?.search]);
 
  /* go back screen  */
  const goBack = () => navigation.goBack();
@@ -80,14 +82,14 @@ const useVocabulary = (idCategory: number, category: string) => {
 
  /* handler to create a new category */
  const handlerSave = (values: ModelVocabulary) => {
-  if(!values.vocabulary) return ;
+  if (!values.vocabulary) return;
   create(values);
   handlerStatus(messageSuccessVocabulary.create, true, values.vocabulary);
  };
 
  /* handler to edit a new category */
  const handlerEdit = (values: ModelVocabulary) => {
-  if(!values.vocabulary) return ;
+  if (!values.vocabulary) return;
   handlerAppear(values.vocabulary, typesAction.edit, messageVocabularyDialog.edit);
   setVocabulary(values);
  };
@@ -143,7 +145,7 @@ const useVocabulary = (idCategory: number, category: string) => {
   try {
    const rs = await service.create(values, idCategory);
    await updateAll();
-   console.log(rs)
+   console.log(rs);
   } catch (error) {
    console.log('Error al crear la categoria: ' + error);
   } finally {
@@ -164,19 +166,24 @@ const useVocabulary = (idCategory: number, category: string) => {
   }
  };
  /* search a cetgory */
- const search = async (values: ModelVocabulary) => {
-  if(!values.vocabulary) return ;
-  setIsLoading(true);
+
+ const search = async (search: Search) => {
+  setIsLoadingSearch(true);
   try {
-   const rs = await service.search(values.vocabulary);
+   const rs = await service.search(search, category);
    const data = (rs as SQLite.ResultSet[])[0].rows;
-   setVocabularies(data as ModelVocabulary[]);
-   if (values.vocabulary === '' || !values.vocabulary) await updateAll();
+   const targets = data as ModelVocabulary[];
+   setVocabularies(
+    targets.map((target) => ({
+     id: target.idVocabulary!,
+     name: target.vocabulary!,
+     translation: target.translation,
+    })),
+   );
   } catch (error) {
-   console.log('Error al verificar la categoria: ' + error);
-  } finally {
-   setIsLoading(false);
+   //  console.log(error);
   }
+  setIsLoadingSearch(false);
  };
  /* disable a category */
  const disable = async (id: number) => {
@@ -220,7 +227,14 @@ const useVocabulary = (idCategory: number, category: string) => {
   try {
    const rs = await service.showAllEnable(idCategory);
    const data = (rs as SQLite.ResultSet[])[0].rows;
-   setVocabularies(data as ModelVocabulary[]);
+   const targets = data as ModelVocabulary[];
+   setVocabularies(
+    targets.map((target) => ({
+     id: target.idVocabulary!,
+     name: target.vocabulary!,
+     translation: target.translation,
+    })),
+   );
   } catch (error) {
    console.log('Error al buscar todas las categorias habilitadas categoria: ' + error);
   }
@@ -230,7 +244,14 @@ const useVocabulary = (idCategory: number, category: string) => {
   try {
    const rs = await service.showAllDisable(idCategory);
    const data = (rs as SQLite.ResultSet[])[0].rows;
-   setDisabledVocabularies(data as ModelVocabulary[]);
+   const targets = data as ModelVocabulary[];
+   setDisabledVocabularies(
+    targets.map((target) => ({
+     id: target.idVocabulary!,
+     name: target.vocabulary!,
+     translation: target.translation,
+    })),
+   );
   } catch (error) {
    console.log('Error al buscar todas las categorias desabilitadas categoria: ' + error);
   }
@@ -238,27 +259,27 @@ const useVocabulary = (idCategory: number, category: string) => {
 
  const resetAll = () => {
   setVocabulary({
-    idCategory,
-    category,
-    translation: undefined,
-    vocabulary: undefined,
-    idVocabulary: undefined,
+   idCategory,
+   category,
+   translation: undefined,
+   vocabulary: undefined,
+   idVocabulary: undefined,
   });
  };
  if (decisition && type === typesAction.eliminate && vocabulary?.idVocabulary) {
-   if(!vocabulary.vocabulary) return ;
+  if (!vocabulary.vocabulary) return;
   disable(vocabulary.idVocabulary);
   handlerHidde();
   handlerStatus(messageSuccessVocabulary.disable, true, vocabulary.vocabulary);
  }
  if (decisition && type === typesAction.enable && vocabulary?.idVocabulary) {
-  if(!vocabulary.vocabulary) return ;
+  if (!vocabulary.vocabulary) return;
   enable(vocabulary.idVocabulary);
   handlerHidde();
   handlerStatus(messageSuccessVocabulary.enable, true, vocabulary.vocabulary);
  }
  if (decisition && type === typesAction.edit && vocabulary?.idVocabulary) {
-  if(!vocabulary.vocabulary) return ;
+  if (!vocabulary.vocabulary) return;
   edit(vocabulary);
   handlerHidde();
   handlerStatus(messageSuccessVocabulary.edit, true, vocabulary.vocabulary);
@@ -281,16 +302,14 @@ const useVocabulary = (idCategory: number, category: string) => {
   vocabulary,
   modalSetting,
   vocabularies,
+  isLoadingSearch,
   disabledVocabularies,
-  search,
   goBack,
-  enable,
   handlerSave,
   handlerEdit,
   handlerEnable,
   handlerEdition,
   handlerDisable,
-  setVocabularies,
   handlerRefresAll,
   handlerHiddeDisable,
   handlerAppearDisable,

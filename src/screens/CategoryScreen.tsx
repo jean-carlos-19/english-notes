@@ -1,14 +1,18 @@
 import React from 'react';
-import { ScrollView, StatusBar, View } from 'react-native';
 import { theme } from '@/atomic/theme';
+import { useCategory, useSearch } from '@/hooks';
+import { useNavigation } from '@react-navigation/native';
+import { StatusBar, View } from 'react-native';
+import { validationCategory, validationSearch } from '@/validations';
 import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
 import { CustomList, CustomCategoryForm, CustomModal } from '@/atomic/components';
 import { messageRefresh, typesButtonConst, typesForm, typesIconConst } from '@/constants';
-import { validationCategory } from '@/validations';
-import { useCategory } from '@/hooks';
-import { useNavigation } from '@react-navigation/native';
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 const CategoryScreen = () => {
+ const { search, hanlderSearch } = useSearch();
  const {
   dialog,
   category,
@@ -17,8 +21,8 @@ const CategoryScreen = () => {
   isLoading,
   categories,
   modalSetting,
+  isLoadingSearch,
   disabledCategories,
-  search,
   goBack,
   handlerEdit,
   handlerSave,
@@ -29,7 +33,7 @@ const CategoryScreen = () => {
   handlerHiddeDisable,
   handlerHiddeEdition,
   handlerAppearDisable,
- } = useCategory();
+ } = useCategory(search);
  const navigation = useNavigation();
  const goScreenVocabulary = (id: number, typeCategory: string) =>
   navigation.navigate('Vocabulary', { idCategory: id, category: typeCategory });
@@ -93,13 +97,9 @@ const CategoryScreen = () => {
     <View></View>
     {/* list categories eliminated  */}
     <CustomList
-     searchForm={{
-      entity: category,
-      validationSchema: validationCategory,
-      handlerSubmit: handlerSave,
-     }}
+     isLoading={isLoadingSearch}
      title="List categories"
-     list={disabledCategories}
+     items={disabledCategories}
      handlerEnable={handlerEnable}
      buttons={[
       {
@@ -118,9 +118,15 @@ const CategoryScreen = () => {
   );
 
  return (
-  <ScrollView className="p-4 bg-sky-100 w-full h-full">
+  <View
+   className="p-4 bg-sky-100 w-full h-full"
+   style={{
+    width,
+    height,
+   }}
+  >
    <StatusBar backgroundColor={'rgb(224 242 254)'} barStyle={'dark-content'} />
-   <View className="flex-col justify-start items-stretch space-y-8">
+   <View className="flex-1 flex-col justify-stretch items-stretch space-y-8">
     {/* header */}
     <View className="flex-row justify-between items-center space-x-2">
      {/* button go back */}
@@ -178,13 +184,14 @@ const CategoryScreen = () => {
     <View></View>
     {/* List categories */}
     <CustomList
+     isLoading={isLoadingSearch}
      searchForm={{
-      entity: category,
-      validationSchema: validationCategory,
-      handlerSubmit: search,
+      entity: search,
+      validationSchema: validationSearch,
+      handlerSubmit: hanlderSearch,
      }}
      title="List categories"
-     list={categories}
+     items={categories}
      goScreen={goScreenVocabulary}
      handlerEdit={handlerEdition}
      handlerEliminate={handlerDisable}
@@ -211,9 +218,8 @@ const CategoryScreen = () => {
       },
      ]}
     />
-    <View></View>
    </View>
-  </ScrollView>
+  </View>
  );
 };
 

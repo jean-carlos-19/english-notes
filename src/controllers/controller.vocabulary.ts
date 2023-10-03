@@ -1,5 +1,6 @@
-import { ModelVocabulary } from '@/models';
+import { Search } from '@/types';
 import * as SQLite from 'expo-sqlite';
+import { ModelVocabulary } from '@/models';
 
 interface ControllerVocabulary {
  create: (
@@ -16,7 +17,10 @@ interface ControllerVocabulary {
   vocabulary: ModelVocabulary,
  ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  verify: (id: number) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
- search: (name: string) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
+ search: (
+  search: Search,
+  category: string,
+ ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  showAllEnable: (
   idCategory: number,
  ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;

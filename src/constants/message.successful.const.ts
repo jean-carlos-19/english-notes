@@ -49,8 +49,8 @@ const messageSuccessVocabulary = Object.freeze({
  },
 });
 export {
- messageSuccessCategory,
  messageCategoryDialog,
+ messageSuccessCategory,
  messageVocabularyDialog,
  messageSuccessVocabulary,
 };

@@ -1,9 +1,9 @@
-export { CustomButton } from './CustomButton';
-export { CustomInput } from './CustomInput';
-export { CustomLoading } from './CustomLoading';
-export { CustomPhoto } from './CustomPhoto';
+export { Icon } from './Icon';
 export { CustomItem } from './CustomItem';
+export { CustomInput } from './CustomInput';
+export { CustomPhoto } from './CustomPhoto';
+export { CustomButton } from './CustomButton';
 export { CustomSelect } from './CustomSelect';
 export { CustomDialog } from './CustomDialog';
+export { CustomLoading } from './CustomLoading';
 export { CustomTextArea } from './CustomTextArea';
-export { Icon } from './Icon';

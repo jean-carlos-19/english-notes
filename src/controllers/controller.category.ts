@@ -1,5 +1,6 @@
-import { ModelCategory } from '@/models';
+import { Search } from '@/types';
 import * as SQLite from 'expo-sqlite';
+import { ModelCategory } from '@/models';
 
 interface ControllerCategory {
  create: (
@@ -11,7 +12,7 @@ interface ControllerCategory {
   category: ModelCategory,
  ) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  verify: (id: number) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
- search: (category: string) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
+ search: (search: Search) => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  showAllEnable: () => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
  showAllDisable: () => Promise<(SQLite.ResultSetError | SQLite.ResultSet)[] | undefined>;
 }

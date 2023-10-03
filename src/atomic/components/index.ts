@@ -1,7 +1,5 @@
-export { CustomModal } from './CustomModal';
-export { CustomCategoryForm } from './CustomCategoryForm';
 export { CustomList } from './CustomList';
-export { EditCategory } from './EditCategory';
+export { CustomModal } from './CustomModal';
 export { CustomSearchForm } from './CustomSearchForm';
+export { CustomCategoryForm } from './CustomCategoryForm';
 export { CustomVocabularyForm } from './CustomVocabularyForm';
-export { CustomListVocabulary } from './CustomListVocabulary';

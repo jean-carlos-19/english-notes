@@ -1,6 +1,6 @@
-import { queryTables, queryViews } from '@/querys';
-import * as FileSystem from 'expo-file-system';
 import * as SQLite from 'expo-sqlite';
+import * as FileSystem from 'expo-file-system';
+import { queryTables, queryViews } from '@/querys';
 
 abstract class ConfigSqlite {
  public createDataBase = async () => {

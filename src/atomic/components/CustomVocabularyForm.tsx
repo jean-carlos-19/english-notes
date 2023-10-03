@@ -1,26 +1,49 @@
-import { ModelVocabulary } from '@/models';
-import { CustomVocabularyFormProps } from '@/types';
-import { Formik, FormikHelpers } from 'formik';
+import { theme } from '@/atomic/theme';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { CustomButton, CustomInput } from '../elements';
+import { ModelVocabulary } from '@/models';
+import { Formik, FormikHelpers } from 'formik';
+import { CustomVocabularyFormProps } from '@/types';
+import { CustomButton, CustomInput } from '@/atomic/elements';
 import { typesButtonConst, typesForm, typesIconConst } from '@/constants';
-import { theme } from '../theme';
+const contentVocabularyForm = Object.freeze({
+ create: {
+  title: 'Create a vocabulary',
+  button: 'Save vocabulary',
+ },
+ edit: {
+  title: 'Edit a vocabulary',
+  button: 'Save change',
+ },
+ vocabulary: {
+  id: 'vocabulary',
+  label: 'vocabulary',
+  placeholder: 'Ej: beatiful',
+ },
+ translation: {
+  id: 'translation',
+  label: 'translation',
+  placeholder: 'Ej: hermosa',
+ },
+ button: {
+  secundary: 'omitir change',
+ },
+});
 
 const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
- const { entity, type, validationSchema, isVisible, handlerSubmit } = props;
- const [isActivate, setIsActivate] = useState<boolean>(isVisible);
+ const { type } = props;
+ const [isActivate, setIsActivate] = useState<boolean>(props.isVisible);
  const handlerHiddeContent = () => {
   setIsActivate(!isActivate);
  };
  return (
   <Formik
    enableReinitialize={true}
-   validationSchema={validationSchema}
-   initialValues={entity}
+   validationSchema={props.validationSchema}
+   initialValues={props.entity}
    onSubmit={(values: ModelVocabulary, formikHelpers: FormikHelpers<ModelVocabulary>) => {
     formikHelpers.resetForm();
-    handlerSubmit(values);
+    props.handlerSubmit(values);
    }}
   >
    {(props) => {
@@ -29,7 +52,9 @@ const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
       {/* Header */}
       <View className="flex-row justify-between items-center space-x-4">
        <Text className="text-blue-900 text-xl font-semibold text-center">
-        {type === typesForm.edit ? 'Edit vocabulary' : 'Create vocabulary'}
+        {type === typesForm.edit
+         ? contentVocabularyForm.edit.title
+         : contentVocabularyForm.create.title}
        </Text>
        <View></View>
        <CustomButton
@@ -54,17 +79,17 @@ const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
         <CustomInput
          className={'flex-col justify-start items-stretch space-y-4 '}
          background={'transparent'}
-         label={'Vocabulary'}
+         label={contentVocabularyForm.vocabulary.label}
          styleLabel="text-slate-500 text-xl"
          stylyText={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}
          value={props.values.vocabulary}
-         placeholder={'Ej: Store'}
-         handlerChange={props.handleChange('vocabulary')}
-         hanhandlerBlur={props.handleBlur('vocabulary')}
+         placeholder={contentVocabularyForm.vocabulary.placeholder}
+         handlerChange={props.handleChange(contentVocabularyForm.vocabulary.id)}
+         hanhandlerBlur={props.handleBlur(contentVocabularyForm.vocabulary.id)}
          isEditable={true}
         />
         {/* message error vocabulary */}
-        {props.errors.vocabulary && (
+        {props.touched.vocabulary && props.errors.vocabulary && (
          <Text className="text-red-700 font-semibold">{props.errors.vocabulary}</Text>
         )}
         <View></View>
@@ -72,38 +97,42 @@ const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
         <CustomInput
          className={'flex-col justify-start items-stretch space-y-4 '}
          background={'transparent'}
-         label={'Translation'}
+         label={contentVocabularyForm.translation.label}
          styleLabel="text-slate-500 text-xl"
          stylyText={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}
          value={props.values.translation}
-         placeholder={'Ej: Store'}
-         handlerChange={props.handleChange('translation')}
-         hanhandlerBlur={props.handleBlur('translation')}
+         placeholder={contentVocabularyForm.translation.placeholder}
+         handlerChange={props.handleChange(contentVocabularyForm.translation.id)}
+         hanhandlerBlur={props.handleBlur(contentVocabularyForm.translation.id)}
          isEditable={true}
         />
         {/* message error vocabulary */}
-        {props.errors.translation && (
+        {props.touched.translation && props.errors.translation && (
          <Text className="text-red-700 font-semibold">{props.errors.translation}</Text>
         )}
         <View></View>
         {/* button send and edit form */}
         <CustomButton
-         type={'default'}
+         type={typesButtonConst.default}
          isDisable={!props.isValid}
          stylyButton={'p-4 bg-blue-500 rounded-xl'}
          stylyText={'text-center font-semibold text-xl text-slate-100'}
-         text={type === typesForm.edit ? 'Save changes' : 'Save vocabulary'}
+         text={
+          type === typesForm.edit
+           ? contentVocabularyForm.edit.button
+           : contentVocabularyForm.create.button
+         }
          handlerPress={props.handleSubmit}
         />
         {/* button omitir form */}
         {type === typesForm.edit && (
          <View className="flex-col space-y-4">
           <CustomButton
-           type={'default'}
+           type={typesButtonConst.default}
            isDisable={false}
            stylyButton={'p-4 bg-blue-100 rounded-xl'}
            stylyText={'text-center font-semibold text-xl text-slate-500'}
-           text={'Omitir changes'}
+           text={contentVocabularyForm.button.secundary}
           />
          </View>
         )}

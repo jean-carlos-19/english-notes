@@ -3,33 +3,21 @@ import { View, TextInput, Text } from 'react-native';
 import { CustomInputProps } from '@/types';
 
 const CustomInput = (props: CustomInputProps) => {
- const {
-  className,
-  styleLabel,
-  stylyText,
-  background,
-  value,
-  label,
-  placeholder,
-  isEditable,
-  handlerChange,
-  hanhandlerBlur,
- } = props;
  return (
-  <View className={className} style={{ backgroundColor: background }}>
-   <Text className={`${styleLabel}`}>{label}</Text>
+  <View className={props.className} style={{ backgroundColor: props.background }}>
+   <Text className={`${props.styleLabel}`}>{props.label}</Text>
 
-   {!isEditable ? (
-    <Text className={stylyText}> {value} </Text>
+   {!props.isEditable ? (
+    <Text className={props.stylyText}> {props.value} </Text>
    ) : (
     <TextInput
      multiline
-     value={value?.toString()}
-     editable={isEditable}
-     className={stylyText}
-     placeholder={placeholder}
-     onChangeText={handlerChange}
-     onBlur={hanhandlerBlur}
+     value={props.value?.toString()}
+     editable={props.isEditable}
+     className={props.stylyText}
+     placeholder={props.placeholder}
+     onChangeText={props.handlerChange}
+     onBlur={props.hanhandlerBlur}
     />
    )}
   </View>
