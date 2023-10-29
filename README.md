@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">Coffee IU App</h1>
+<h1 align="center">Think Smart</h1>
 
 <div align="center">
   <h3>
@@ -22,7 +22,7 @@
 
 ## Overview
 
-![screenshot](https://raw.githubusercontent.com/jean-carlos-19/coffe-expo/master/assets/cover/Cover-github.png)
+![screenshot](https://res.cloudinary.com/dlwusojw2/image/upload/v1698167557/projects/Cover-github_grtubj.png)
 
 
 ### Built With
@@ -44,10 +44,10 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ gh repo clone https://github.com/jean-carlos-19/expo-coffee
+$ gh repo clone https://github.com/jean-carlos-19/think-smart
 
 # Access to the mobile folder
-$ cd expo-coffee
+$ cd think-smart
 
 # Install dependencies
 $ yarn install
@@ -58,6 +58,6 @@ $ yarn start
 
 ## Contact
 
-- Website [piguavesoft.vercel.app](https://piguavesoft.vercel.app/)
+- Website [piguavesof.com](https://piguavesof.com)
 - GitHub [@PiguaveJean](https://github.com/jean-carlos-19)
 - PhoneNumber [+593 98 3526 509](https://wa.me/593983526509)
