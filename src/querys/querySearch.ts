@@ -12,8 +12,8 @@ const queryShowAllDisable = Object.freeze({
  Vocabularies: `select idVocabulary, vocabulary, translation from showAllDisableVocabularies where idCategory = ?;`,
 });
 const querySearch = Object.freeze({
- Categories: `select idCategory, category from showAllEnableCategories where category like ?||'%';`,
- Vocabularies: `select idVocabulary, vocabulary, translation from showAllEnableVocabularies where category = ?  and ( vocabulary like ?||'%' or translation like ?||'%' );`,
+ Categories: `select idCategory, category from showAllEnableCategories where category like '%'||?||'%';`,
+ Vocabularies: `select idVocabulary, vocabulary, translation from showAllEnableVocabularies where category = ?  and ( vocabulary like '%'||?||'%' or translation like '%'||?||'%' );`,
 });
 
 export { querySearch, queryShowAllEnable, queryShowAllDisable, queryVerify };
