@@ -45,5 +45,16 @@
     "secundary": "omitir change"
    }
   }
+ },
+ "lists": {
+  "category": {
+   "text": "List categories"
+  },
+  "vocabulary": {
+   "text": "List vocabularies"
+  },
+  "loading": {
+   "text": "wait please..."
+  }
  }
 }

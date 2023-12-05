@@ -1,9 +1,11 @@
 import React from 'react';
-import { images } from '@/constants';
+import { images, data } from '@/constants';
 import { CustomListProps } from '@/types';
 import { ScrollView, Text, View } from 'react-native';
 import { CustomSearchForm } from '@/atomic/components';
 import { CustomItem, CustomPhoto } from '@/atomic/elements';
+
+const content = data.lists;
 
 const CustomList = (props: CustomListProps) => {
  return (
@@ -21,7 +23,10 @@ const CustomList = (props: CustomListProps) => {
    )}
    {props.isLoading ? (
     <View className="flex-1 flex-row items-start justify-center">
-     <Text className="text-xl font-semibold text-blue-900 text-center">wait please...</Text>
+     <Text className="text-xl font-semibold text-blue-900 text-center">
+      {' '}
+      {content.loading.text}{' '}
+     </Text>
     </View>
    ) : props.items === undefined || props.items.length <= 0 ? (
     <View className="flex-1 flex-row items-center justify-center">

@@ -5,10 +5,11 @@ import { Dimensions, StatusBar, Text, View } from 'react-native';
 import { validationVocabulary, validationSearch } from '@/validations';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
-import { messageRefresh, typesButton, typesForm, typesIcon } from '@/constants';
 import { CustomList, CustomModal, CustomVocabularyForm } from '@/atomic/components';
+import { messageRefresh, typesButton, typesForm, typesIcon, data } from '@/constants';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Vocabulary'>;
+const content = data.lists;
 
 const { width, height } = Dimensions.get('window');
 
@@ -77,7 +78,7 @@ const VocabularyScreen = (props: Props) => {
     {/* list categories eliminated  */}
     <CustomList
      isLoading={isLoadingSearch}
-     title="List categories"
+     title={content.vocabulary.text}
      items={disabledVocabularies}
      handlerEnable={handlerEnable}
      icons={[typesIcon.enable]}
@@ -140,7 +141,7 @@ const VocabularyScreen = (props: Props) => {
     {/* List categories */}
     <CustomList
      isLoading={isLoadingSearch}
-     title="List vocabularies"
+     title={content.vocabulary.text}
      items={vocabularies}
      handlerEdit={handlerEdition}
      handlerEliminate={handlerDisable}

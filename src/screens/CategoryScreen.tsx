@@ -6,9 +6,11 @@ import { validationCategory, validationSearch } from '@/validations';
 import { StatusBar, View, Dimensions, StyleSheet } from 'react-native';
 import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
 import { CustomList, CustomCategoryForm, CustomModal } from '@/atomic/components';
-import { messageRefresh, typesButton, typesForm, typesIcon } from '@/constants';
+import { messageRefresh, typesButton, typesForm, typesIcon, data } from '@/constants';
 
 const { width, height } = Dimensions.get('window');
+
+const content = data.lists;
 
 const CategoryScreen = () => {
  const { search, hanlderSearch } = useSearch();
@@ -22,7 +24,6 @@ const CategoryScreen = () => {
   modalSetting,
   isLoadingSearch,
   disabledCategories,
-  goBack,
   handlerEdit,
   handlerSave,
   handlerEnable,
@@ -77,7 +78,7 @@ const CategoryScreen = () => {
     {/* list categories eliminated  */}
     <CustomList
      isLoading={isLoadingSearch}
-     title="List categories"
+     title={content.category.text}
      items={disabledCategories}
      handlerEnable={handlerEnable}
      icons={[typesIcon.enable]}
@@ -86,12 +87,12 @@ const CategoryScreen = () => {
   );
 
  return (
-  <View className="p-4 bg-sky-100 w-full h-full" style={style.container}>
+  <View className="p-4 bg-sky-100 w-full h-full" style={styles.container}>
    <StatusBar backgroundColor={'rgb(224 242 254)'} barStyle={'dark-content'} />
    <View className="flex-1 flex-col justify-stretch items-stretch space-y-8">
     {/* header */}
     <View className="flex-row justify-between items-center space-x-2">
-     {/* button refresh */}
+     {/* refresh button  */}
      <CustomButton
       isDisable={false}
       type={typesButton.icon}
@@ -101,7 +102,7 @@ const CategoryScreen = () => {
       handlerPress={handlerRefresAll}
      />
      <View></View>
-     {/* button elimitating */}
+     {/* button elimnate */}
      <CustomButton
       isDisable={false}
       type={typesButton.iconText}
@@ -130,7 +131,7 @@ const CategoryScreen = () => {
       validationSchema: validationSearch,
       handlerSubmit: hanlderSearch,
      }}
-     title="List categories"
+     title={content.category.text}
      items={categories}
      goScreen={goScreenVocabulary}
      handlerEdit={handlerEdition}
@@ -142,7 +143,7 @@ const CategoryScreen = () => {
  );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
  container: {
   width,
   height,

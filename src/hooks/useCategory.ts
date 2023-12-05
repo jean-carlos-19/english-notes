@@ -46,9 +46,6 @@ const useCategory = (targetSearch?: Search) => {
   initializeDatabase();
  }, []);
 
- /* go back screen  */
- const goBack = () => navigation.goBack();
-
  /* initialize database */
  const initializeDatabase = async () => {
   setIsLoading(true);
@@ -270,7 +267,6 @@ const useCategory = (targetSearch?: Search) => {
   modalSetting,
   isLoadingSearch,
   disabledCategories,
-  goBack,
   enable,
   handlerSave,
   handlerEdit,
