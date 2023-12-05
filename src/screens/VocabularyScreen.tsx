@@ -1,12 +1,11 @@
 import React from 'react';
-import { theme } from '@/atomic/theme';
 import { RootStackParamList } from '@/types';
 import { useVocabulary, useSearch } from '@/hooks';
 import { Dimensions, StatusBar, Text, View } from 'react-native';
 import { validationVocabulary, validationSearch } from '@/validations';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
-import { messageRefresh, typesButtonConst, typesForm, typesIconConst } from '@/constants';
+import { messageRefresh, typesButton, typesForm, typesIcon } from '@/constants';
 import { CustomList, CustomModal, CustomVocabularyForm } from '@/atomic/components';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Vocabulary'>;
@@ -38,17 +37,7 @@ const VocabularyScreen = (props: Props) => {
  } = useVocabulary(props.route.params.idCategory, props.route.params.category, search);
 
  /* secction load */
- if (isLoading)
-  return (
-   <CustomLoading
-    isActivate={isLoading}
-    colorText={'text-slate-800'}
-    message={messageRefresh}
-    background={'bg-sky-100'}
-    color={'rgb(59 130 246)'}
-    size={75}
-   />
-  );
+ if (isLoading) return <CustomLoading message={messageRefresh} />;
  /* secction modal */
  if (modalSetting.isActivate) return <CustomModal setting={modalSetting} />;
 
@@ -59,13 +48,8 @@ const VocabularyScreen = (props: Props) => {
    <View className="w-full h-full flex-col bg-sky-100 justify-start items-stretch p-4 space-y-8">
     {/* button go bakc */}
     <CustomButton
-     type={typesButtonConst.icon}
-     icon={{
-      color: theme.blue,
-      size: 50,
-      strokeWidth: 1.5,
-      type: typesIconConst.arrowLeft,
-     }}
+     type={typesButton.icon}
+     icon={typesIcon.arrowLeft}
      handlerPress={handlerHiddeEdition}
     />
     <View></View>
@@ -85,13 +69,8 @@ const VocabularyScreen = (props: Props) => {
    <View className="w-full h-full flex-col bg-sky-100 justify-start items-stretch p-4 space-y-8">
     {/* button go back */}
     <CustomButton
-     type={typesButtonConst.icon}
-     icon={{
-      color: theme.blue,
-      size: 50,
-      strokeWidth: 2,
-      type: typesIconConst.arrowLeft,
-     }}
+     type={typesButton.icon}
+     icon={typesIcon.arrowLeft}
      handlerPress={handlerHiddeDisable}
     />
     <View></View>
@@ -101,18 +80,7 @@ const VocabularyScreen = (props: Props) => {
      title="List categories"
      items={disabledVocabularies}
      handlerEnable={handlerEnable}
-     buttons={[
-      {
-       stylyButton: 'p-2 bg-white rounded-xl',
-       type: typesButtonConst.icon,
-       icon: {
-        type: typesIconConst.enable,
-        color: theme.gray,
-        size: 25,
-        strokeWidth: 1,
-       },
-      },
-     ]}
+     icons={[typesIcon.enable]}
     />
    </View>
   );
@@ -131,16 +99,7 @@ const VocabularyScreen = (props: Props) => {
     {/* header */}
     <View className="flex-row justify-between items-center space-x-2">
      {/* button go back */}
-     <CustomButton
-      type={typesButtonConst.icon}
-      icon={{
-       color: theme.blue,
-       size: 50,
-       strokeWidth: 2,
-       type: typesIconConst.arrowLeft,
-      }}
-      handlerPress={goBack}
-     />
+     <CustomButton type={typesButton.icon} icon={typesIcon.arrowLeft} handlerPress={goBack} />
      <View></View>
      <Text className="flex-1 font-semibold text-center text-gray-700 text-base">
       {' '}
@@ -150,13 +109,8 @@ const VocabularyScreen = (props: Props) => {
      {/* button refresh */}
      <CustomButton
       isDisable={false}
-      type={typesButtonConst.icon}
-      icon={{
-       color: theme.gray,
-       size: 25,
-       strokeWidth: 2,
-       type: typesIconConst.refresh,
-      }}
+      type={typesButton.icon}
+      icon={typesIcon.refresh}
       stylyButton="bg-white p-2 rounded-xl flex-row justify-between"
       stylyText="text-xl text-red-800  text-center"
       handlerPress={handlerRefresAll}
@@ -165,13 +119,8 @@ const VocabularyScreen = (props: Props) => {
      {/* button elimitating */}
      <CustomButton
       isDisable={false}
-      type={typesButtonConst.iconText}
-      icon={{
-       color: theme.red,
-       size: 25,
-       strokeWidth: 1,
-       type: typesIconConst.elimited,
-      }}
+      type={typesButton.iconText}
+      icon={typesIcon.elimited}
       text={`${disabledVocabularies.length}`}
       stylyButton="bg-white p-2 rounded-xl flex-row justify-between"
       stylyText="text-xl text-red-800  text-center"
@@ -195,28 +144,7 @@ const VocabularyScreen = (props: Props) => {
      items={vocabularies}
      handlerEdit={handlerEdition}
      handlerEliminate={handlerDisable}
-     buttons={[
-      {
-       stylyButton: 'p-2 bg-white rounded-xl',
-       type: typesButtonConst.icon,
-       icon: {
-        type: typesIconConst.edit,
-        color: theme.gray,
-        size: 25,
-        strokeWidth: 1,
-       },
-      },
-      {
-       stylyButton: 'p-2 bg-white rounded-xl',
-       type: typesButtonConst.icon,
-       icon: {
-        type: typesIconConst.elimited,
-        color: theme.red,
-        size: 25,
-        strokeWidth: 1,
-       },
-      },
-     ]}
+     icons={[typesIcon.edit, typesIcon.elimited]}
      searchForm={{
       entity: search,
       validationSchema: validationSearch,

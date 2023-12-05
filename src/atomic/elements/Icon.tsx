@@ -1,6 +1,7 @@
 import React from 'react';
 import { IconProps } from '@/types';
-import { typesIconConst } from '@/constants';
+import { typesIcon } from '@/constants';
+import { theme } from '@/atomic/theme';
 import {
  PlusIcon,
  TrashIcon,
@@ -19,37 +20,23 @@ import {
 } from 'react-native-heroicons/solid';
 
 const Icon = (props: IconProps) => {
- const { type, color, size, strokeWidth } = props;
- if (type === typesIconConst.default)
-  return <XMarkIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.enable)
-  return <CheckIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.elimited)
-  return <TrashIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.view)
-  return <PlusIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.hidde)
-  return <XMarkIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.arrowLeft)
-  return <ArrowLeftCircleIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.refresh)
-  return <ArrowPathIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.expand)
-  return <ArrowsPointingOutIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.eye)
-  return <EyeIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.edit)
-  return <PencilIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.create)
-  return <PlusCircleIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.MicrophoneIcon)
-  return <SpeakerWaveIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.EyeSlashIcon)
-  return <EyeSlashIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.MagnifyingGlassIcon)
-  return <MagnifyingGlassIcon size={size} color={color} strokeWidth={strokeWidth} />;
- if (type === typesIconConst.clock)
-  return <ClockIcon size={size} color={color} strokeWidth={strokeWidth} />;
+ const { icon } = props;
+
+ if (icon === typesIcon.enable) return <CheckIcon size={25} color={theme.gray} strokeWidth={1} />;
+ if (icon === typesIcon.elimited) return <TrashIcon size={25} color={theme.red} strokeWidth={1} />;
+ if (icon === typesIcon.arrowLeft)
+  return <ArrowLeftCircleIcon size={50} color={theme.blue} strokeWidth={1.5} />;
+ if (icon === typesIcon.refresh)
+  return <ArrowPathIcon size={25} color={theme.gray} strokeWidth={2} />;
+ if (icon === typesIcon.eye) return <EyeIcon size={30} color={theme.gray} strokeWidth={5} />;
+ if (icon === typesIcon.edit) return <PencilIcon size={25} color={theme.gray} strokeWidth={1} />;
+ if (icon === typesIcon.MicrophoneIcon)
+  return <SpeakerWaveIcon size={25} color={theme.blue} strokeWidth={2} />;
+ if (icon === typesIcon.EyeSlashIcon)
+  return <EyeSlashIcon size={30} color={theme.gray} strokeWidth={5} />;
+ if (icon === typesIcon.MagnifyingGlassIcon)
+  return <MagnifyingGlassIcon size={30} color={theme.blue} strokeWidth={2} />;
+ if (icon === typesIcon.clock) return <ClockIcon size={25} color={theme.blue} strokeWidth={2} />;
  return null;
 };
 

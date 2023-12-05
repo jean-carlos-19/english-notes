@@ -3,12 +3,14 @@ export type {
  RootButtonParamList,
  ModalSetting,
  dialogSetting,
+ statusButton,
+ statusIcon,
  typesForm,
  Community,
  Message,
  Search,
- Item,
  Photo,
+ Item,
 } from './type.common';
 export type {
  CustomVocabularyFormProps,

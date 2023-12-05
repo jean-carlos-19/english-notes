@@ -1,17 +1,17 @@
 import * as SQLite from 'expo-sqlite';
+import { useModal } from './useModal';
+import { Search, Item } from '@/types';
+import { useDialog } from './useDialog';
 import { ModelCategory } from '@/models';
 import { useEffect, useState } from 'react';
 import { ServiceCategory } from '@/services';
 import { useNavigation } from '@react-navigation/native';
-import { useDialog } from './useDialog';
 import {
  messageCategoryDialog,
  messageSuccessCategory,
  typesAction,
  typesStatusDialog,
 } from '@/constants';
-import { useModal } from './useModal';
-import { Search, Item } from '@/types';
 
 const service: ServiceCategory = ServiceCategory.getService();
 
@@ -56,7 +56,7 @@ const useCategory = (targetSearch?: Search) => {
    await service.createDataBase();
    await updateAll();
   } catch (error) {
-   console.log('Error al crear la base de datos' + error);
+   //    console.log('Error al crear la base de datos' + error);
   } finally {
    setIsLoading(false);
   }
@@ -120,7 +120,7 @@ const useCategory = (targetSearch?: Search) => {
    await searchAllEnable();
    await searchAllDisabled();
   } catch (error) {
-   console.log('Error al crear la categoria: ' + error);
+   //    console.log('Error al crear la categoria: ' + error);
   } finally {
    setIsLoading(false);
   }
@@ -133,7 +133,7 @@ const useCategory = (targetSearch?: Search) => {
    await service.create(values);
    await updateAll();
   } catch (error) {
-   console.log('Error al crear la categoria: ' + error);
+   //    console.log('Error al crear la categoria: ' + error);
   } finally {
    setIsLoading(false);
   }
@@ -146,7 +146,7 @@ const useCategory = (targetSearch?: Search) => {
    setEdition(false);
    await updateAll();
   } catch (error) {
-   console.log('Error al verificar la categoria: ' + error);
+   //    console.log('Error al verificar la categoria: ' + error);
   } finally {
    setIsLoading(false);
   }
@@ -159,7 +159,7 @@ const useCategory = (targetSearch?: Search) => {
    await service.disable(id);
    await updateAll();
   } catch (error) {
-   console.log('Error al desabilitar: ' + error);
+   //    console.log('Error al desabilitar: ' + error);
   } finally {
    setIsLoading(false);
   }
@@ -171,7 +171,7 @@ const useCategory = (targetSearch?: Search) => {
    await service.enable(id);
    await updateAll();
   } catch (error) {
-   console.log('Error al desabilitar: ' + error);
+   //    console.log('Error al desabilitar: ' + error);
   } finally {
    setIsLoading(false);
   }
@@ -185,7 +185,7 @@ const useCategory = (targetSearch?: Search) => {
    const targets = data as ModelCategory[];
    setCategories(targets.map((target) => ({ id: target.idCategory!, name: target.category! })));
   } catch (error) {
-    console.log(error);
+   //    console.log(error);
   }
   setIsLoadingSearch(false);
  };
@@ -198,7 +198,7 @@ const useCategory = (targetSearch?: Search) => {
    const data = (rs as SQLite.ResultSet[])[0].rows[0];
    setCategory(data as ModelCategory);
   } catch (error) {
-   console.log('Error al verificar la categoria: ' + error);
+   //    console.log('Error al verificar la categoria: ' + error);
   } finally {
    setIsLoading(false);
   }
@@ -211,7 +211,7 @@ const useCategory = (targetSearch?: Search) => {
    const targets = data as ModelCategory[];
    setCategories(targets.map((target) => ({ id: target.idCategory!, name: target.category! })));
   } catch (error) {
-   console.log('Error al buscar todas las categorias habilitadas categoria: ' + error);
+   //    console.log('Error al buscar todas las categorias habilitadas categoria: ' + error);
   }
  };
  /* search all disable category */
@@ -224,7 +224,7 @@ const useCategory = (targetSearch?: Search) => {
     targets.map((target) => ({ id: target.idCategory!, name: target.category! })),
    );
   } catch (error) {
-   console.log('Error al buscar todas las categorias desabilitadas categoria: ' + error);
+   //    console.log('Error al buscar todas las categorias desabilitadas categoria: ' + error);
   }
  };
 

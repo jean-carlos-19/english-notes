@@ -1,9 +1,6 @@
-import { statusAction, statusDialog } from '@/constants';
 import { ImageSourcePropType } from 'react-native';
 /*  */
 
-type typesForm = 'create' | 'edit';
-type Item = { id: number; name: string; translation?: string };
 interface Search {
  search: string;
 }
@@ -47,26 +44,45 @@ interface ModalSetting {
 }
 /* roots stck params */
 type RootStackParamList = {
- Home: undefined;
  Category: undefined;
  Vocabulary: {
   idCategory: number;
   category: string;
  };
- Verbs: undefined;
- PhrasalVerbs: undefined;
- Idioms: undefined;
- Conversation: undefined;
 };
-type RootButtonParamList = {
- //  Home: undefined;
- //  Product: undefined;
-};
+
+/* types form */
+type typesForm = 'create' | 'edit';
+type Item = { id: number; name: string; translation?: string };
+/* types buttons */
+type statusButton = 'default' | 'icon' | 'iconText';
+/* types icons */
+type statusIcon =
+ | 'view'
+ | 'eliminated'
+ | 'default'
+ | 'enable'
+ | 'hidde'
+ | 'arrow-left'
+ | 'refresh'
+ | 'expand'
+ | 'edit'
+ | 'eye'
+ | 'create'
+ | 'MicrophoneIcon'
+ | 'EyeSlashIcon'
+ | 'MagnifyingGlassIcon'
+ | 'clock';
+/*  */
+type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
+/*  */
+type statusDialog = 'success' | 'error';
 export type {
  RootStackParamList,
- RootButtonParamList,
- ModalSetting,
  dialogSetting,
+ ModalSetting,
+ statusButton,
+ statusIcon,
  typesForm,
  Community,
  Message,

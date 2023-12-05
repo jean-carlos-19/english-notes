@@ -1,32 +1,18 @@
 import { AnyObjectSchema } from 'yup';
-import { Photo, Message } from './type.common';
-import { statusButton, statusIcon } from '@/constants';
 import { ModelCategory, ModelVocabulary } from '@/models';
+import { Photo, Message, statusButton, statusIcon } from './type.common';
 import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
 import { Community, ModalSetting, dialogSetting, typesForm, Search, Item } from './type.common';
 
 /*  */
 interface CustomButtonIconProps {
- type:
-  | 'view'
-  | 'eliminated'
-  | 'default'
-  | 'disabled'
-  | 'hidde'
-  | 'arrow-left'
-  | 'refresh'
-  | 'expand'
-  | 'edit'
-  | 'eye';
+ type: statusIcon;
  text?: string;
  className?: string;
  handlerPress?: () => void;
 }
 interface IconProps {
- size: number;
- color: string;
- type: statusIcon;
- strokeWidth: number;
+ icon: statusIcon;
 }
 interface CustomDialogProps {
  setting: dialogSetting;
@@ -34,7 +20,7 @@ interface CustomDialogProps {
 interface CustomListProps {
  title: string;
  isLoading: boolean;
- buttons: CustomButtonProps[];
+ icons: statusIcon[];
  searchForm?: CustomSearchFormProps;
  items: Item[];
  handlerEliminate?: (id: number, name: string) => void;
@@ -47,7 +33,7 @@ interface CustomItemProps {
  id: number;
  title: string;
  text?: string;
- buttons: CustomButtonProps[];
+ icons: statusIcon[];
  handlerItem?: () => void;
  goScreen?: (id: number, screen: string) => void;
  handlerEdit?: (id: number, name: string) => void;
@@ -69,7 +55,7 @@ interface CustomLisVocabularytProps {
 interface CustomButtonProps {
  text?: string;
  textSecundary?: string;
- icon?: IconProps;
+ icon?: statusIcon;
  type: statusButton;
  stylyText?: string;
  isDisable?: boolean;
@@ -90,12 +76,7 @@ interface CustomInputProps {
  hanhandlerBlur?: ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void) | undefined;
 }
 interface CustomLoadingProps {
- size: number;
- color: string;
  message: Message;
- colorText: string;
- background: string;
- isActivate: boolean;
 }
 interface CustomPhotoProps {
  image: Photo;

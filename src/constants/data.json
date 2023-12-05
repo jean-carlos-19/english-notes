@@ -1,0 +1,49 @@
+{
+ "forms": {
+  "category": {
+   "fields": {
+    "name": {
+     "id": "category",
+     "label": "Category",
+     "placeholder": "Ej: body"
+    }
+   },
+   "create": {
+    "title": "Create a category",
+    "button": "Save category"
+   },
+   "edit": {
+    "title": "Edit a category",
+    "button": "Save change"
+   },
+   "buttons": {
+    "secundary": "omitir change"
+   }
+  },
+  "vocabulary": {
+   "create": {
+    "title": "Create a vocabulary",
+    "button": "Save vocabulary"
+   },
+   "edit": {
+    "title": "Edit a vocabulary",
+    "button": "Save change"
+   },
+   "fields": {
+    "vocabulary": {
+     "id": "vocabulary",
+     "label": "vocabulary",
+     "placeholder": "Ej: beatiful"
+    },
+    "translation": {
+     "id": "translation",
+     "label": "translation",
+     "placeholder": "Ej: hermosa"
+    }
+   },
+   "buttons": {
+    "secundary": "omitir change"
+   }
+  }
+ }
+}

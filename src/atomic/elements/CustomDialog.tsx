@@ -2,7 +2,7 @@ import { CustomDialogProps } from '@/types';
 import React from 'react';
 import { Text, View } from 'react-native';
 import { CustomButton } from './CustomButton';
-import { typesButtonConst } from '@/constants';
+import { typesButton } from '@/constants';
 
 const CustomDialog = (props: CustomDialogProps) => {
  if (!props.setting.isActivate) return null;
@@ -25,7 +25,7 @@ const CustomDialog = (props: CustomDialogProps) => {
     {/* button primary dialog */}
     <View></View>
     <CustomButton
-     type={typesButtonConst.default}
+     type={typesButton.default}
      isDisable={false}
      stylyButton={'p-4 rounded-xl bg-blue-500'}
      stylyText={'text-xl text-slate-200 text-center font-semibold'}
@@ -35,7 +35,7 @@ const CustomDialog = (props: CustomDialogProps) => {
     {/* button secundary dialog */}
     <View></View>
     <CustomButton
-     type={typesButtonConst.default}
+     type={typesButton.default}
      isDisable={false}
      stylyButton={'p-4 rounded-xl bg-slate-200'}
      stylyText={'text-xl text-slate-600 text-center font-semibold'}

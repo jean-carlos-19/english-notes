@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { CustomModalProps } from '@/types';
-import { images, typesButtonConst } from '@/constants';
+import { images, typesButton } from '@/constants';
 import { CustomButton, CustomPhoto } from '@/atomic/elements';
 
 const CustomModal = (props: CustomModalProps) => {
@@ -26,7 +26,7 @@ const CustomModal = (props: CustomModalProps) => {
     {/* Button modal */}
     <View></View>
     <CustomButton
-     type={typesButtonConst.default}
+     type={typesButton.default}
      isDisable={false}
      stylyText={'text-center font-semibold text-xl text-slate-100'}
      text={'Ok'}

@@ -4,7 +4,7 @@ import { TextInput, View } from 'react-native';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomButton } from '@/atomic/elements';
 import { CustomSearchFormProps, Search } from '@/types';
-import { typesButtonConst, typesIconConst } from '@/constants';
+import { typesButton, typesIcon } from '@/constants';
 const contentSearchForm = Object.freeze({
  search: {
   id: 'search',
@@ -42,13 +42,8 @@ const CustomSearchForm = (props: CustomSearchFormProps) => {
       {/* button send and edit form */}
       <CustomButton
        stylyButton={''}
-       type={typesButtonConst.icon}
-       icon={{
-        color: theme.blue,
-        size: 30,
-        strokeWidth: 2,
-        type: typesIconConst.MagnifyingGlassIcon,
-       }}
+       type={typesButton.icon}
+       icon={typesIcon.MagnifyingGlassIcon}
        isDisable={!props.isValid}
        handlerPress={props.handleSubmit}
       />

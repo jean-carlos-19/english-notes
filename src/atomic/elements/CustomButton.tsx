@@ -1,11 +1,12 @@
 import React from 'react';
 import { Icon } from './Icon';
+import { typesButton } from '@/constants';
 import { CustomButtonProps } from '@/types';
-import { typesButtonConst } from '@/constants';
 import { TouchableOpacity, Text, View } from 'react-native';
 
 const CustomButton = (props: CustomButtonProps) => {
- if (props.type === typesButtonConst.default)
+ /* default button  */
+ if (props.type === typesButton.default)
   return (
    <TouchableOpacity
     className={props.isDisable ? 'p-4 bg-gray-400 rounded-xl' : props.stylyButton}
@@ -16,34 +17,19 @@ const CustomButton = (props: CustomButtonProps) => {
     {props.textSecundary && <Text className={props.stylyTextSecundary}>{props.textSecundary}</Text>}
    </TouchableOpacity>
   );
- if (
-  props.type === typesButtonConst.icon &&
-  props.icon?.type &&
-  props.icon.size &&
-  props.icon.size &&
-  props.icon.strokeWidth
- )
+ /* icon button */
+ if (props.type === typesButton.icon && props.icon)
   return (
    <TouchableOpacity
     className={props.stylyButton}
     onPress={props.handlerPress}
     disabled={props.isDisable}
    >
-    <Icon
-     type={props.icon.type}
-     color={props.icon.color}
-     size={props.icon.size}
-     strokeWidth={props.icon.strokeWidth}
-    />
+    <Icon icon={props.icon} />
    </TouchableOpacity>
   );
- if (
-  props.type === typesButtonConst.iconText &&
-  props.icon?.type &&
-  props.icon.size &&
-  props.icon.size &&
-  props.icon.strokeWidth
- )
+ /* icon and text of the button */
+ if (props.type === typesButton.iconText && props.icon)
   return (
    <TouchableOpacity
     className={props.stylyButton}
@@ -52,12 +38,7 @@ const CustomButton = (props: CustomButtonProps) => {
    >
     <Text className={props.stylyText}>{props.text}</Text>
     <View></View>
-    <Icon
-     type={props.icon.type}
-     color={props.icon.color}
-     size={props.icon.size}
-     strokeWidth={props.icon.strokeWidth}
-    />
+    <Icon icon={props.icon} />
    </TouchableOpacity>
   );
  return null;

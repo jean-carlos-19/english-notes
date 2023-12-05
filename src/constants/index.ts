@@ -1,41 +1,24 @@
 import { Message } from '@/types';
+import data from './data.json';
 
 /*  */
 const messageRefresh = Object.freeze<Message>({
  title: 'Message loading',
  text: 'please wait ...',
 });
-/* types form */
-type statusForm = 'create' | 'edit';
+
 const typesForm = Object.freeze({
  create: 'create',
  edit: 'edit',
 });
-/* types buttons */
-type statusButton = 'default' | 'icon' | 'iconText';
-const typesButtonConst = Object.freeze({
+
+const typesButton = Object.freeze({
  default: 'default',
  icon: 'icon',
  iconText: 'iconText',
 });
-/* types icons */
-type statusIcon =
- | 'view'
- | 'eliminated'
- | 'default'
- | 'enable'
- | 'hidde'
- | 'arrow-left'
- | 'refresh'
- | 'expand'
- | 'edit'
- | 'eye'
- | 'create'
- | 'MicrophoneIcon'
- | 'EyeSlashIcon'
- | 'MagnifyingGlassIcon'
- | 'clock';
-const typesIconConst = Object.freeze({
+
+const typesIcon = Object.freeze({
  view: 'view',
  elimited: 'eliminated',
  default: 'default',
@@ -53,7 +36,7 @@ const typesIconConst = Object.freeze({
  clock: 'clock',
 });
 /*  */
-type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
+
 const typesAction = Object.freeze({
  enable: 'enable',
  create: 'create',
@@ -63,8 +46,6 @@ const typesAction = Object.freeze({
  cancel: 'cancel',
 });
 
-/*  */
-type statusDialog = 'success' | 'error';
 const typesStatusDialog = Object.freeze({
  success: 'success',
  error: 'error',
@@ -75,19 +56,7 @@ export {
  messageCategoryDialog,
  messageSuccessVocabulary,
  messageVocabularyDialog,
-} from './message.successful.const';
-export { images } from './images.const';
+} from './message';
+export { images } from './images';
 
-export {
- typesForm,
- typesAction,
- typesIconConst,
- messageRefresh,
- typesButtonConst,
- typesStatusDialog,
- statusForm,
- statusIcon,
- statusDialog,
- statusAction,
- statusButton,
-};
+export { typesIcon, typesForm, typesButton, typesAction, messageRefresh, typesStatusDialog, data };

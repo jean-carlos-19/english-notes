@@ -35,7 +35,7 @@ const CustomList = (props: CustomListProps) => {
        id={item?.id}
        title={item.name}
        text={item.translation}
-       buttons={props.buttons}
+       icons={props.icons}
        goScreen={props.goScreen}
        handlerItem={props.handlerItem}
        handlerEdit={props.handlerEdit}

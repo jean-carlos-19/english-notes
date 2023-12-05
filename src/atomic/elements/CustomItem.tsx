@@ -2,7 +2,7 @@ import { CustomItemProps } from '@/types';
 import React, { useState } from 'react';
 import { CustomButton } from './CustomButton';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { typesButtonConst, typesIconConst } from '@/constants';
+import { typesButton, typesIcon } from '@/constants';
 import { useSpeech } from '@/hooks';
 import { theme } from '../theme';
 
@@ -18,19 +18,14 @@ const CustomItem = (props: CustomItemProps) => {
    onPress={() => props.goScreen && props.goScreen(props.id, props.title)}
   >
    <View className="flex-row justify-between items-center space-x-2 ">
-    <View className='basis-4/5'>
-    <Text className={"text-xl text-blue-900 font-semibold"}>{props.title}</Text>
-    {props.text && <Text className={"text-gray-600 font-semibold"}>{props.text}</Text>}
+    <View className="basis-4/5">
+     <Text className={'text-xl text-blue-900 font-semibold'}>{props.title}</Text>
+     {props.text && <Text className={'text-gray-600 font-semibold'}>{props.text}</Text>}
     </View>
     <View></View>
     <CustomButton
-     type={typesButtonConst.icon}
-     icon={{
-      type: isVisible ? typesIconConst.eye : typesIconConst.EyeSlashIcon,
-      color: theme.gray,
-      size: 30,
-      strokeWidth: 5,
-     }}
+     type={typesButton.icon}
+     icon={isVisible ? typesIcon.eye : typesIcon.EyeSlashIcon}
      handlerPress={handlerVisible}
     />
    </View>
@@ -38,21 +33,19 @@ const CustomItem = (props: CustomItemProps) => {
    {isVisible && (
     <View className="flex-row justify-end items-stretch space-x-4">
      {/* buttons edit o eliminate */}
-     {props.buttons.map((button, i) => (
+     {props.icons.map((icon, i) => (
       <View key={i}>
        <CustomButton
-        stylyButton={button.stylyButton}
-        type={button.type}
-        icon={button.icon}
+        stylyButton={'p-2 bg-white rounded-xl'}
+        type={typesButton.icon}
+        icon={icon}
         handlerPress={() => {
-         props.handlerEdit &&
-          button.icon?.type === typesIconConst.edit &&
-          props.handlerEdit(props.id, props.title);
+         props.handlerEdit && icon === typesIcon.edit && props.handlerEdit(props.id, props.title);
          props.handlerEliminate &&
-          button.icon?.type === typesIconConst.elimited &&
+          icon === typesIcon.elimited &&
           props.handlerEliminate(props.id, props.title);
          props.handlerEnable &&
-          button.icon?.type === typesIconConst.enable &&
+          icon === typesIcon.enable &&
           props.handlerEnable(props.id, props.title);
         }}
        />
@@ -61,14 +54,9 @@ const CustomItem = (props: CustomItemProps) => {
 
      {/* button  voice*/}
      <CustomButton
-      type={typesButtonConst.icon}
+      type={typesButton.icon}
       isDisable={isLoading}
-      icon={{
-       type: isLoading ? typesIconConst.clock : typesIconConst.MicrophoneIcon,
-       color: theme.blue,
-       size: 25,
-       strokeWidth: 2,
-      }}
+      icon={isLoading ? typesIcon.clock : typesIcon.MicrophoneIcon}
       stylyButton={'p-2 ml-2 bg-white rounded-xl'}
       handlerPress={() => {
        handlerSpeak(props.title);
