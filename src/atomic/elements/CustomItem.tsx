@@ -1,10 +1,9 @@
-import { CustomItemProps } from '@/types';
-import React, { useState } from 'react';
-import { CustomButton } from './CustomButton';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { typesButton, typesIcon } from '@/constants';
 import { useSpeech } from '@/hooks';
-import { theme } from '../theme';
+import React, { useState } from 'react';
+import { CustomItemProps } from '@/types';
+import { CustomButton } from './CustomButton';
+import { typesButton, typesIcon } from '@/constants';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 const CustomItem = (props: CustomItemProps) => {
  const { isLoading, handlerSpeak } = useSpeech();

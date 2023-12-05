@@ -3,20 +3,16 @@ import { IconProps } from '@/types';
 import { typesIcon } from '@/constants';
 import { theme } from '@/atomic/theme';
 import {
- PlusIcon,
- TrashIcon,
- XMarkIcon,
- CheckIcon,
- ArrowsPointingOutIcon,
  EyeIcon,
+ TrashIcon,
+ ClockIcon,
+ CheckIcon,
  PencilIcon,
- PlusCircleIcon,
- SpeakerWaveIcon,
  EyeSlashIcon,
+ ArrowPathIcon,
+ SpeakerWaveIcon,
  MagnifyingGlassIcon,
  ArrowLeftCircleIcon,
- ArrowPathIcon,
- ClockIcon,
 } from 'react-native-heroicons/solid';
 
 const Icon = (props: IconProps) => {

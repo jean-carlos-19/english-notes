@@ -56,5 +56,9 @@
   "loading": {
    "text": "wait please..."
   }
+ },
+ "footer": {
+  "text": "piguavesof",
+  "url": "https://piguavesof.com"
  }
 }

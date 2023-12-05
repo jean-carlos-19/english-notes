@@ -1,6 +1,5 @@
 import React from 'react';
-import { theme } from '@/atomic/theme';
-import { useCategory, useSearch } from '@/hooks';
+import { useCategory, useProfile, useSearch } from '@/hooks';
 import { useNavigation } from '@react-navigation/native';
 import { validationCategory, validationSearch } from '@/validations';
 import { StatusBar, View, Dimensions, StyleSheet } from 'react-native';
@@ -11,9 +10,11 @@ import { messageRefresh, typesButton, typesForm, typesIcon, data } from '@/const
 const { width, height } = Dimensions.get('window');
 
 const content = data.lists;
+const footer = data.footer;
 
 const CategoryScreen = () => {
  const { search, hanlderSearch } = useSearch();
+ const { handleProfile } = useProfile();
  const {
   dialog,
   category,
@@ -137,6 +138,13 @@ const CategoryScreen = () => {
      handlerEdit={handlerEdition}
      handlerEliminate={handlerDisable}
      icons={[typesIcon.edit, typesIcon.elimited]}
+    />
+    <CustomButton
+     type={typesButton.default}
+     stylyButton="p-4 bg-slate-200"
+     stylyText="text-xl text-center text-slate-400 font-semibold"
+     handlerPress={handleProfile}
+     text={footer.text}
     />
    </View>
   </View>

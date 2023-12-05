@@ -1,10 +1,9 @@
 import React from 'react';
-import { theme } from '@/atomic/theme';
 import { TextInput, View } from 'react-native';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomButton } from '@/atomic/elements';
-import { CustomSearchFormProps, Search } from '@/types';
 import { typesButton, typesIcon } from '@/constants';
+import { CustomSearchFormProps, Search } from '@/types';
 const contentSearchForm = Object.freeze({
  search: {
   id: 'search',

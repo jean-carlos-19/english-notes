@@ -1,4 +1,3 @@
-import { theme } from '@/atomic/theme';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { ModelVocabulary } from '@/models';

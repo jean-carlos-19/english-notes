@@ -5,7 +5,6 @@ import { useDialog } from './useDialog';
 import { ModelCategory } from '@/models';
 import { useEffect, useState } from 'react';
 import { ServiceCategory } from '@/services';
-import { useNavigation } from '@react-navigation/native';
 import {
  messageCategoryDialog,
  messageSuccessCategory,
@@ -16,7 +15,6 @@ import {
 const service: ServiceCategory = ServiceCategory.getService();
 
 const useCategory = (targetSearch?: Search) => {
- const navigation = useNavigation();
  const [category, setCategory] = useState<ModelCategory>({
   category: '',
  });
