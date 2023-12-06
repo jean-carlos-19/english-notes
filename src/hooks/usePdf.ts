@@ -3,7 +3,7 @@ import { printToFileAsync } from 'expo-print';
 import { shareAsync } from 'expo-sharing';
 
 const usePdf = () => {
- const html = (items:Item[], name:string)=>`
+ const html = (items: Item[], name: string) => `
         <html>
         <head>
             <style>
@@ -64,20 +64,27 @@ const usePdf = () => {
             ${name}
             </h1>
             <div class="list">
-                ${
-                    items.map((item:Item,i)=>`<p class="item"> <span class="number"> ${(i+1)} </span> ${item.name.toLocaleLowerCase() } ${item?.translation? `- ${item.translation}`:""}  </p>`).join("")
-                }
+                ${items
+                 .map(
+                  (item: Item, i) =>
+                   `<p class="item"> <span class="number"> ${
+                    i + 1
+                   } </span> ${item.name.toLocaleLowerCase()} ${
+                    item?.translation ? `- ${item.translation}` : ''
+                   }  </p>`,
+                 )
+                 .join('')}
             </div>
             <a class="link" href="https:/piguavesof.com">by @piguavesof</a>
         </body>
         </html>
     `;
- const handlerGeneratePdfCategory = async (items:Item[],name:string) => {
+ const handlerGeneratePdfCategory = async (items: Item[], name: string) => {
   const file = await printToFileAsync({
-   html:html(items,name),
+   html: html(items, name),
    base64: false,
   });
-  await shareAsync(file.uri,{UTI:".pdf",mimeType:"application/pdf"});
+  await shareAsync(file.uri, { UTI: '.pdf', mimeType: 'application/pdf' });
  };
  return { handlerGeneratePdfCategory };
 };

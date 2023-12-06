@@ -20,7 +20,7 @@ interface CustomDialogProps {
 interface CustomListProps {
  title: string;
  items: Item[];
- name:string;
+ name: string;
  isLoading: boolean;
  icons: statusIcon[];
  searchForm?: CustomSearchFormProps;

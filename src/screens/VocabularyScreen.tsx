@@ -77,7 +77,7 @@ const VocabularyScreen = (props: Props) => {
     <View></View>
     {/* list categories eliminated  */}
     <CustomList
-    name={content.vocabulary.text}
+     name={content.vocabulary.text}
      isLoading={isLoadingSearch}
      title={content.vocabulary.text}
      items={disabledVocabularies}
@@ -135,7 +135,7 @@ const VocabularyScreen = (props: Props) => {
     <View></View>
     {/* List categories */}
     <CustomList
-    name={` Vocabularies ${props.route.params.category}`}
+     name={` Vocabularies ${props.route.params.category}`}
      isLoading={isLoadingSearch}
      title={content.vocabulary.text}
      items={vocabularies}

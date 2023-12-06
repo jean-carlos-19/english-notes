@@ -21,7 +21,7 @@ const CustomList = (props: CustomListProps) => {
     <CustomButton
      type={typesButton.icon}
      icon={typesIcon.document}
-     handlerPress={()=>handlerGeneratePdfCategory(props.items,props.name)}
+     handlerPress={() => handlerGeneratePdfCategory(props.items, props.name)}
     />
    </View>
    <View></View>
