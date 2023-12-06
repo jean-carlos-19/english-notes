@@ -3,8 +3,15 @@ import { Text, View } from 'react-native';
 import { ModelVocabulary } from '@/models';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomVocabularyFormProps } from '@/types';
-import { CustomButton, CustomInput } from '@/atomic/elements';
-import { typesButton, typesForm, typesIcon, data } from '@/constants';
+import { CustomButton, CustomInput, CustomText } from '@/atomic/elements';
+import {
+ typesButton,
+ typesForm,
+ typesIcon,
+ data,
+ typesSizeTextStyle,
+ typesText,
+} from '@/constants';
 
 const content = data.forms.vocabulary;
 
@@ -29,9 +36,11 @@ const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
      <View className="bg-white rounded-xl p-4 space-y-4">
       {/* Header */}
       <View className="flex-row justify-between items-center space-x-4">
-       <Text className="text-blue-900 text-xl font-semibold text-center">
-        {type === typesForm.edit ? content.edit.title : content.create.title}
-       </Text>
+       <CustomText
+        variant={typesText.primary}
+        size={typesSizeTextStyle.xl}
+        text={type === typesForm.edit ? content.edit.title : content.create.title}
+       />
        <View></View>
        <CustomButton
         isDisable={false}
@@ -48,11 +57,7 @@ const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
         <View></View>
         {/* input vocabulary */}
         <CustomInput
-         className={'flex-col justify-start items-stretch space-y-4 '}
-         background={'transparent'}
          label={content.fields.vocabulary.label}
-         styleLabel="text-slate-500 text-xl"
-         stylyText={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}
          value={props.values.vocabulary}
          placeholder={content.fields.vocabulary.placeholder}
          handlerChange={props.handleChange(content.fields.vocabulary.id)}
@@ -66,11 +71,7 @@ const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
         <View></View>
         {/* input translation */}
         <CustomInput
-         className={'flex-col justify-start items-stretch space-y-4 '}
-         background={'transparent'}
          label={content.fields.translation.label}
-         styleLabel="text-slate-500 text-xl"
-         stylyText={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}
          value={props.values.translation}
          placeholder={content.fields.translation.placeholder}
          handlerChange={props.handleChange(content.fields.translation.id)}

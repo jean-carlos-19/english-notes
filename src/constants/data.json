@@ -44,6 +44,10 @@
    "buttons": {
     "secundary": "omitir change"
    }
+  },
+  "search": {
+   "id": "search",
+   "placeholder": "Ej: stores"
   }
  },
  "lists": {
@@ -58,7 +62,7 @@
   }
  },
  "footer": {
-  "text": "piguavesof",
+  "text": "by @piguavesof",
   "url": "https://piguavesof.com"
  }
 }

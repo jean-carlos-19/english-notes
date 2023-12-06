@@ -12,6 +12,18 @@ const typesForm = Object.freeze({
  edit: 'edit',
 });
 
+const typesText = Object.freeze({
+ primary: 'Primary',
+ seccundary: 'Secundary',
+ error: 'Error',
+});
+
+const typesSizeTextStyle = Object.freeze({
+ 'xl': 'xl',
+ '2xl': '2xl',
+ '3xl': '3xl',
+ 'normal': 'normal',
+});
 const typesButton = Object.freeze({
  default: 'default',
  icon: 'icon',
@@ -59,4 +71,14 @@ export {
 } from './message';
 export { images } from './images';
 
-export { typesIcon, typesForm, typesButton, typesAction, messageRefresh, typesStatusDialog, data };
+export {
+ typesIcon,
+ typesForm,
+ typesButton,
+ typesAction,
+ messageRefresh,
+ typesStatusDialog,
+ typesText,
+ typesSizeTextStyle,
+ data,
+};

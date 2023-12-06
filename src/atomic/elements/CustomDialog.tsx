@@ -2,7 +2,8 @@ import { CustomDialogProps } from '@/types';
 import React from 'react';
 import { Text, View } from 'react-native';
 import { CustomButton } from './CustomButton';
-import { typesButton } from '@/constants';
+import { typesButton, typesSizeTextStyle, typesText } from '@/constants';
+import { CustomText } from './CustomText';
 
 const CustomDialog = (props: CustomDialogProps) => {
  if (!props.setting.isActivate) return null;
@@ -12,16 +13,17 @@ const CustomDialog = (props: CustomDialogProps) => {
    {/* body dialog */}
    <View className="px-4 py-8 flex-1 space-y-4 bg-white rounded-xl">
     {/* title and message dialog */}
-    <Text className="text-2xl font-semibold text-center text-slate-800">
-     {props.setting.content?.message.title}
-    </Text>
-    <Text className="text-xl text-slate-800 text-center">
-     {props.setting.content?.message.text}
-     <Text className="text-xl font-semibold text-center text-slate-800">
-      {' '}
-      {props.setting.content?.name}{' '}
-     </Text>{' '}
-    </Text>
+    <CustomText
+     variant={typesText.seccundary}
+     size={typesSizeTextStyle['2xl']}
+     text={props.setting.content?.message.title as string}
+    />
+
+    <CustomText
+     variant={typesText.seccundary}
+     size={typesSizeTextStyle['normal']}
+     text={props.setting.content?.message.text as string}
+    />
     {/* button primary dialog */}
     <View></View>
     <CustomButton

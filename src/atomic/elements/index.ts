@@ -1,5 +1,6 @@
 export { Icon } from './Icon';
 export { CustomItem } from './CustomItem';
+export { CustomText } from './CustomText';
 export { CustomInput } from './CustomInput';
 export { CustomPhoto } from './CustomPhoto';
 export { CustomButton } from './CustomButton';

@@ -2,14 +2,10 @@ import React from 'react';
 import { TextInput, View } from 'react-native';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomButton } from '@/atomic/elements';
-import { typesButton, typesIcon } from '@/constants';
+import { typesButton, typesIcon, data } from '@/constants';
 import { CustomSearchFormProps, Search } from '@/types';
-const contentSearchForm = Object.freeze({
- search: {
-  id: 'search',
-  placeholder: 'Ej: stores',
- },
-});
+
+const content = data.forms.search;
 
 const CustomSearchForm = (props: CustomSearchFormProps) => {
  const { handlerSubmit } = props;
@@ -32,10 +28,10 @@ const CustomSearchForm = (props: CustomSearchFormProps) => {
        className={'flex-1 text-slate-600 text-xl'}
        multiline
        value={props.values.search}
-       placeholder={contentSearchForm.search.placeholder}
+       placeholder={content.placeholder}
        editable={true}
-       onChangeText={props.handleChange(contentSearchForm.search.id)}
-       onBlur={props.handleBlur(contentSearchForm.search.id)}
+       onChangeText={props.handleChange(content.id)}
+       onBlur={props.handleBlur(content.id)}
       />
       <View></View>
       {/* button send and edit form */}

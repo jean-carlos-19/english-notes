@@ -1,9 +1,9 @@
 import React from 'react';
 import { RootStackParamList } from '@/types';
 import { useVocabulary, useSearch } from '@/hooks';
-import { Dimensions, StatusBar, Text, View } from 'react-native';
 import { validationVocabulary, validationSearch } from '@/validations';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Dimensions, StatusBar, Text, View, StyleSheet } from 'react-native';
 import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
 import { CustomList, CustomModal, CustomVocabularyForm } from '@/atomic/components';
 import { messageRefresh, typesButton, typesForm, typesIcon, data } from '@/constants';
@@ -11,7 +11,7 @@ import { messageRefresh, typesButton, typesForm, typesIcon, data } from '@/const
 type Props = NativeStackScreenProps<RootStackParamList, 'Vocabulary'>;
 const content = data.lists;
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('screen');
 
 const VocabularyScreen = (props: Props) => {
  const { search, hanlderSearch } = useSearch();
@@ -89,10 +89,7 @@ const VocabularyScreen = (props: Props) => {
  return (
   <View
    className="w-full h-full bg-sky-100 p-4"
-   style={{
-    width,
-    height,
-   }}
+   style={styles.container}
   >
    <StatusBar backgroundColor={'rgb(224 242 254)'} barStyle={'dark-content'} />
    {/* bady Vocabulary screen */}
@@ -156,5 +153,10 @@ const VocabularyScreen = (props: Props) => {
   </View>
  );
 };
-
+const styles = StyleSheet.create({
+    container: {
+     width,
+     height,
+    },
+   });
 export { VocabularyScreen };

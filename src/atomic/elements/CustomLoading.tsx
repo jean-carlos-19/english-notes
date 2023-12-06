@@ -1,17 +1,25 @@
 import React from 'react';
-import { images } from '@/constants';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { CustomText } from './CustomText';
 import { CustomPhoto } from './CustomPhoto';
 import { CustomLoadingProps } from '@/types';
+import { images, typesSizeTextStyle, typesText } from '@/constants';
 
 const CustomLoading = (props: CustomLoadingProps) => {
  return (
   <View className={`p-4 flex-1 flex-col justify-center items-stretch bg-sky-100`}>
-   <View className="bg-white space-y-4 px-4 py-8 rounded-xl">
-    <Text className={`font-semibold text-2xl text-center text-slate-800`}>
-     {props.message.title}
-    </Text>
-    <Text className={`font-normal text-xl text-center text-slate-800`}> {props.message.text} </Text>
+   <View className="flex flex-col justify-center items-center bg-white space-y-2 px-4 py-8 rounded-xl">
+    <CustomText
+     text={props.message.title as string}
+     variant={typesText.primary}
+     size={typesSizeTextStyle['2xl']}
+    />
+    <View></View>
+    <CustomText
+     text={props.message.text as string}
+     variant={typesText.seccundary}
+     size={typesSizeTextStyle['xl']}
+    />
     <View className="flex-row- justify-center items-center">
      <CustomPhoto image={images.load} />
     </View>

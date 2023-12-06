@@ -4,17 +4,20 @@ import { CustomInputProps } from '@/types';
 
 const CustomInput = (props: CustomInputProps) => {
  return (
-  <View className={props.className} style={{ backgroundColor: props.background }}>
-   <Text className={`${props.styleLabel}`}>{props.label}</Text>
+  <View className={'flex-col justify-start items-stretch space-y-4 '}>
+   <Text className="text-slate-500 text-xl">{props.label}</Text>
 
    {!props.isEditable ? (
-    <Text className={props.stylyText}> {props.value} </Text>
+    <Text className={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}>
+     {' '}
+     {props.value}{' '}
+    </Text>
    ) : (
     <TextInput
      multiline
      value={props.value?.toString()}
      editable={props.isEditable}
-     className={props.stylyText}
+     className={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}
      placeholder={props.placeholder}
      onChangeText={props.handlerChange}
      onBlur={props.hanhandlerBlur}

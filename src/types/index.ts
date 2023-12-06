@@ -1,10 +1,10 @@
 export type {
  RootStackParamList,
- RootButtonParamList,
  ModalSetting,
  dialogSetting,
  statusButton,
  statusIcon,
+ statusText,
  typesForm,
  Community,
  Message,
@@ -27,5 +27,6 @@ export type {
  CustomInputProps,
  CustomModalProps,
  CustomPhotoProps,
+ CustomTextProps,
  IconProps,
 } from './type.componentes';

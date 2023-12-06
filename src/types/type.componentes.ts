@@ -1,6 +1,6 @@
 import { AnyObjectSchema } from 'yup';
 import { ModelCategory, ModelVocabulary } from '@/models';
-import { Photo, Message, statusButton, statusIcon } from './type.common';
+import { Photo, Message, statusButton, statusIcon, statusText } from './type.common';
 import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
 import { Community, ModalSetting, dialogSetting, typesForm, Search, Item } from './type.common';
 
@@ -65,10 +65,6 @@ interface CustomButtonProps {
 }
 interface CustomInputProps {
  label: string;
- className: string;
- stylyText: string;
- background: string;
- styleLabel: string;
  isEditable: boolean;
  placeholder: string;
  value: string | number | undefined;
@@ -116,6 +112,11 @@ interface CustomSearchFormProps {
  validationSchema: AnyObjectSchema;
  handlerSubmit: (values: Search) => void;
 }
+interface CustomTextProps {
+ variant: statusText;
+ size: 'normal' | 'xl' | '2xl' | '3xl';
+ text: string;
+}
 export type {
  CustomVocabularyFormProps,
  CustomLisVocabularytProps,
@@ -131,5 +132,6 @@ export type {
  CustomPhotoProps,
  CustomListProps,
  CustomItemProps,
+ CustomTextProps,
  IconProps,
 };

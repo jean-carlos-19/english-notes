@@ -74,6 +74,8 @@ type statusIcon =
  | 'MagnifyingGlassIcon'
  | 'clock';
 /*  */
+type statusText = 'Primary' | 'Secundary' | 'Error';
+/*  */
 type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
 /*  */
 type statusDialog = 'success' | 'error';
@@ -84,6 +86,7 @@ export type {
  statusButton,
  statusIcon,
  typesForm,
+ statusText,
  Community,
  Message,
  Search,

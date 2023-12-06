@@ -2,8 +2,9 @@ import { useSpeech } from '@/hooks';
 import React, { useState } from 'react';
 import { CustomItemProps } from '@/types';
 import { CustomButton } from './CustomButton';
-import { typesButton, typesIcon } from '@/constants';
+import { typesButton, typesIcon, typesSizeTextStyle, typesText } from '@/constants';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { CustomText } from './CustomText';
 
 const CustomItem = (props: CustomItemProps) => {
  const { isLoading, handlerSpeak } = useSpeech();
@@ -18,8 +19,14 @@ const CustomItem = (props: CustomItemProps) => {
   >
    <View className="flex-row justify-between items-center space-x-2 ">
     <View className="basis-4/5">
-     <Text className={'text-xl text-blue-900 font-semibold'}>{props.title}</Text>
-     {props.text && <Text className={'text-gray-600 font-semibold'}>{props.text}</Text>}
+     <CustomText variant={typesText.primary} size={typesSizeTextStyle.xl} text={props.title} />
+     {props.text && (
+      <CustomText
+       variant={typesText.seccundary}
+       size={typesSizeTextStyle.normal}
+       text={props.text as string}
+      />
+     )}
     </View>
     <View></View>
     <CustomButton

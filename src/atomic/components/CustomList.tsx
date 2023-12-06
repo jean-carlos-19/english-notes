@@ -1,17 +1,19 @@
 import React from 'react';
-import { images, data } from '@/constants';
+import { theme } from '@/atomic/theme';
 import { CustomListProps } from '@/types';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { CustomSearchForm } from '@/atomic/components';
-import { CustomItem, CustomPhoto } from '@/atomic/elements';
+import { CustomItem, CustomPhoto, CustomText } from '@/atomic/elements';
+import { images, data, typesText, typesSizeTextStyle } from '@/constants';
 
 const content = data.lists;
 
 const CustomList = (props: CustomListProps) => {
  return (
-  <View className="flex-1 bg-white p-4 rounded-xl space-y-4">
+  <View className="flex-1 flex flex-col justify-start items-center bg-white p-4 rounded-xl space-y-4">
    {/* title list */}
-   <Text className="text-xl font-semibold text-blue-900 text-center"> {props.title} </Text>
+   <CustomText variant={typesText.primary} size={typesSizeTextStyle.xl} text={props.title} />
    <View></View>
    {/* Search form */}
    {props.searchForm && (
@@ -22,11 +24,14 @@ const CustomList = (props: CustomListProps) => {
     />
    )}
    {props.isLoading ? (
-    <View className="flex-1 flex-row items-start justify-center">
-     <Text className="text-xl font-semibold text-blue-900 text-center">
-      {' '}
-      {content.loading.text}{' '}
-     </Text>
+    <View className="flex-1 flex-col items-center justify-start space-y-4">
+     <CustomText
+      variant={typesText.primary}
+      size={typesSizeTextStyle.xl}
+      text={content.loading.text}
+     />
+     <View></View>
+      <ActivityIndicator size={75} color={theme.blue} />
     </View>
    ) : props.items === undefined || props.items.length <= 0 ? (
     <View className="flex-1 flex-row items-center justify-center">
@@ -50,8 +55,6 @@ const CustomList = (props: CustomListProps) => {
      ))}
     </ScrollView>
    )}
-   {/* items */}
-   {}
   </View>
  );
 };

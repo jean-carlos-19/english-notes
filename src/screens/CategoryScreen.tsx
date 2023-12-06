@@ -7,7 +7,7 @@ import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
 import { CustomList, CustomCategoryForm, CustomModal } from '@/atomic/components';
 import { messageRefresh, typesButton, typesForm, typesIcon, data } from '@/constants';
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('screen');
 
 const content = data.lists;
 const footer = data.footer;
@@ -139,10 +139,11 @@ const CategoryScreen = () => {
      handlerEliminate={handlerDisable}
      icons={[typesIcon.edit, typesIcon.elimited]}
     />
+    <View></View>
     <CustomButton
      type={typesButton.default}
-     stylyButton="p-4 bg-slate-200"
-     stylyText="text-xl text-center text-slate-400 font-semibold"
+     stylyButton="p-4"
+     stylyText="text-xl text-center text-slate-800 font-semibold"
      handlerPress={handleProfile}
      text={footer.text}
     />

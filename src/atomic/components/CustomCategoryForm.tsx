@@ -3,8 +3,15 @@ import { ModelCategory } from '@/models';
 import { Text, View } from 'react-native';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomCategoryFormProps } from '@/types';
-import { CustomButton, CustomInput } from '@/atomic/elements';
-import { typesButton, typesForm, typesIcon, data } from '@/constants';
+import { CustomButton, CustomInput, CustomText } from '@/atomic/elements';
+import {
+ typesButton,
+ typesForm,
+ typesIcon,
+ data,
+ typesText,
+ typesSizeTextStyle,
+} from '@/constants';
 
 const content = data.forms.category;
 
@@ -29,9 +36,11 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
      <View className="bg-white rounded-xl p-4 space-y-4">
       {/* Header */}
       <View className="flex-row justify-between items-center space-x-4">
-       <Text className="text-blue-900 text-xl font-semibold text-center">
-        {type === typesForm.edit ? content.edit.title : content.create.title}
-       </Text>
+       <CustomText
+        variant={typesText.primary}
+        size={typesSizeTextStyle.xl}
+        text={type === typesForm.edit ? content.edit.title : content.create.title}
+       />
        <View></View>
        <CustomButton
         isDisable={false}
@@ -48,11 +57,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
         <View></View>
         {/* input category */}
         <CustomInput
-         className={'flex-col justify-start items-stretch space-y-4 '}
-         background={'transparent'}
          label={content.fields.name.label}
-         styleLabel="text-slate-500 text-xl"
-         stylyText={'p-4 bg-white rounded-xl border-slate-200 border-4 text-xl text-gray-600'}
          value={props.values.category}
          placeholder={content.fields.name.placeholder}
          handlerChange={props.handleChange(content.fields.name.id)}

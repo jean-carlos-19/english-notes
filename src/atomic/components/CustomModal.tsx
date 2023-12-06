@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { CustomModalProps } from '@/types';
-import { images, typesButton } from '@/constants';
-import { CustomButton, CustomPhoto } from '@/atomic/elements';
+import { images, typesButton, typesSizeTextStyle, typesText } from '@/constants';
+import { CustomButton, CustomPhoto, CustomText } from '@/atomic/elements';
 
 const CustomModal = (props: CustomModalProps) => {
  if (!props.setting.isActivate) return null;
@@ -16,13 +16,16 @@ const CustomModal = (props: CustomModalProps) => {
      <CustomPhoto image={props.setting.type === 'error' ? images.warning : images.success} />
     </View>
     {/* title and message modal */}
-    <Text className="text-gray-700 font-semibold text-2xl text-center">
-     {props.setting.message?.title}
-    </Text>
-    <Text className="text-gray-700 font-normal text-xl text-center">
-     {props.setting.message?.text}
-     <Text className="text-gray-700 text-xl text-center font-semibold"> {props.setting.name} </Text>
-    </Text>
+    <CustomText
+     variant={typesText.seccundary}
+     size={typesSizeTextStyle['2xl']}
+     text={props.setting.message?.title as string}
+    />
+    <CustomText
+     variant={typesText.seccundary}
+     size={typesSizeTextStyle['xl']}
+     text={props.setting.message?.text as string}
+    />
     {/* Button modal */}
     <View></View>
     <CustomButton
