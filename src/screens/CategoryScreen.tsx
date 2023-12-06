@@ -83,14 +83,15 @@ const CategoryScreen = () => {
      items={disabledCategories}
      handlerEnable={handlerEnable}
      icons={[typesIcon.enable]}
+     name={content.category.text}
     />
    </View>
   );
 
  return (
-  <View className="p-4 bg-sky-100 w-full h-full" style={styles.container}>
+  <View className="p-4 bg-sky-100" style={styles.container}>
    <StatusBar backgroundColor={'rgb(224 242 254)'} barStyle={'dark-content'} />
-   <View className="flex-1 flex-col justify-stretch items-stretch space-y-8">
+   <View className="flex-1 flex flex-col justify-stretch items-stretch space-y-8">
     {/* header */}
     <View className="flex-row justify-between items-center space-x-2">
      {/* refresh button  */}
@@ -126,6 +127,7 @@ const CategoryScreen = () => {
     <View></View>
     {/* List categories */}
     <CustomList
+     name={content.category.text}
      isLoading={isLoadingSearch}
      searchForm={{
       entity: search,

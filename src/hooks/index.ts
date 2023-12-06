@@ -1,3 +1,4 @@
+export { usePdf } from './usePdf';
 export { useModal } from './useModal';
 export { useDialog } from './useDialog';
 export { useSearch } from './useSearch';

@@ -13,6 +13,7 @@ import {
  SpeakerWaveIcon,
  MagnifyingGlassIcon,
  ArrowLeftCircleIcon,
+ DocumentArrowDownIcon,
 } from 'react-native-heroicons/solid';
 
 const Icon = (props: IconProps) => {
@@ -33,6 +34,8 @@ const Icon = (props: IconProps) => {
  if (icon === typesIcon.MagnifyingGlassIcon)
   return <MagnifyingGlassIcon size={30} color={theme.blue} strokeWidth={2} />;
  if (icon === typesIcon.clock) return <ClockIcon size={25} color={theme.blue} strokeWidth={2} />;
+ if (icon === typesIcon.document)
+  return <DocumentArrowDownIcon size={25} color={theme.blue} strokeWidth={2} />;
  return null;
 };
 

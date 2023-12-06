@@ -19,10 +19,11 @@ interface CustomDialogProps {
 }
 interface CustomListProps {
  title: string;
+ items: Item[];
+ name:string;
  isLoading: boolean;
  icons: statusIcon[];
  searchForm?: CustomSearchFormProps;
- items: Item[];
  handlerEliminate?: (id: number, name: string) => void;
  handlerEnable?: (id: number, name: string) => void;
  handlerEdit?: (id: number, name: string) => void;

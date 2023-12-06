@@ -58,21 +58,22 @@ type Item = { id: number; name: string; translation?: string };
 type statusButton = 'default' | 'icon' | 'iconText';
 /* types icons */
 type statusIcon =
+ | 'eye'
+ | 'edit'
+ | 'clock'
  | 'view'
- | 'eliminated'
- | 'default'
  | 'enable'
  | 'hidde'
- | 'arrow-left'
- | 'refresh'
  | 'expand'
- | 'edit'
- | 'eye'
  | 'create'
- | 'MicrophoneIcon'
+ | 'refresh'
+ | 'default'
+ | 'document'
+ | 'arrow-left'
+ | 'eliminated'
  | 'EyeSlashIcon'
- | 'MagnifyingGlassIcon'
- | 'clock';
+ | 'MicrophoneIcon'
+ | 'MagnifyingGlassIcon';
 /*  */
 type statusText = 'Primary' | 'Secundary' | 'Error';
 /*  */

@@ -46,6 +46,7 @@ const typesIcon = Object.freeze({
  EyeSlashIcon: 'EyeSlashIcon',
  MagnifyingGlassIcon: 'MagnifyingGlassIcon',
  clock: 'clock',
+ document: 'document',
 });
 /*  */
 

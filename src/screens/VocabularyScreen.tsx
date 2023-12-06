@@ -77,6 +77,7 @@ const VocabularyScreen = (props: Props) => {
     <View></View>
     {/* list categories eliminated  */}
     <CustomList
+    name={content.vocabulary.text}
      isLoading={isLoadingSearch}
      title={content.vocabulary.text}
      items={disabledVocabularies}
@@ -87,13 +88,10 @@ const VocabularyScreen = (props: Props) => {
   );
 
  return (
-  <View
-   className="w-full h-full bg-sky-100 p-4"
-   style={styles.container}
-  >
+  <View className="p-4 bg-sky-100" style={styles.container}>
    <StatusBar backgroundColor={'rgb(224 242 254)'} barStyle={'dark-content'} />
    {/* bady Vocabulary screen */}
-   <View className="flex-1 flex-col justify-start items-stretch space-y-8">
+   <View className="flex-1 flex flex-col justify-stretch items-stretch space-y-8">
     {/* header */}
     <View className="flex-row justify-between items-center space-x-2">
      {/* button go back */}
@@ -137,6 +135,7 @@ const VocabularyScreen = (props: Props) => {
     <View></View>
     {/* List categories */}
     <CustomList
+    name={` Vocabularies ${props.route.params.category}`}
      isLoading={isLoadingSearch}
      title={content.vocabulary.text}
      items={vocabularies}
@@ -154,9 +153,9 @@ const VocabularyScreen = (props: Props) => {
  );
 };
 const styles = StyleSheet.create({
-    container: {
-     width,
-     height,
-    },
-   });
+ container: {
+  width,
+  height,
+ },
+});
 export { VocabularyScreen };
