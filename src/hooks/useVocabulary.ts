@@ -1,9 +1,4 @@
-import {
- messageSuccessVocabulary,
- messageVocabularyDialog,
- typesAction,
- typesStatusDialog,
-} from '@/constants';
+import { messageSuccessVocabulary, messageVocabularyDialog, types } from '@/constants';
 import { useNavigation } from '@react-navigation/native';
 import { ServiceVocabulary } from '@/services';
 import { useEffect, useState } from 'react';
@@ -49,7 +44,7 @@ const useVocabulary = (idCategory: number, category: string, targetSearch?: Sear
   });
  }, [idCategory, category]);
 
- const { modalSetting, handlerStatus } = useModal(false, typesStatusDialog.success, false);
+ const { modalSetting, handlerStatus } = useModal(false, types.dialog.success, false);
 
  useEffect(() => {
   initializeDatabase();
@@ -90,7 +85,7 @@ const useVocabulary = (idCategory: number, category: string, targetSearch?: Sear
  /* handler to edit a new category */
  const handlerEdit = (values: ModelVocabulary) => {
   if (!values.vocabulary) return;
-  handlerAppear(values.vocabulary, typesAction.edit, messageVocabularyDialog.edit);
+  handlerAppear(values.vocabulary, types.action.edit, messageVocabularyDialog.edit);
   setVocabulary(values);
  };
 
@@ -115,13 +110,13 @@ const useVocabulary = (idCategory: number, category: string, targetSearch?: Sear
 
  /* handler to disable one category */
  const handlerDisable = (id: number, vocabulary: string) => {
-  handlerAppear(vocabulary, typesAction.eliminate, messageVocabularyDialog.disable);
+  handlerAppear(vocabulary, types.action.eliminate, messageVocabularyDialog.disable);
   setVocabulary({ idVocabulary: id, vocabulary, translation: '', category });
  };
 
  /* handler to enable one category */
  const handlerEnable = (id: number, vocabulary: string) => {
-  handlerAppear(vocabulary, typesAction.enable, messageVocabularyDialog.enable);
+  handlerAppear(vocabulary, types.action.enable, messageVocabularyDialog.enable);
   setVocabulary({ idVocabulary: id, vocabulary, translation: '', category });
  };
 
@@ -266,19 +261,19 @@ const useVocabulary = (idCategory: number, category: string, targetSearch?: Sear
    idVocabulary: undefined,
   });
  };
- if (decisition && type === typesAction.eliminate && vocabulary?.idVocabulary) {
+ if (decisition && type === types.action.eliminate && vocabulary?.idVocabulary) {
   if (!vocabulary.vocabulary) return;
   disable(vocabulary.idVocabulary);
   handlerHidde();
   handlerStatus(messageSuccessVocabulary.disable, true, vocabulary.vocabulary);
  }
- if (decisition && type === typesAction.enable && vocabulary?.idVocabulary) {
+ if (decisition && type === types.action.enable && vocabulary?.idVocabulary) {
   if (!vocabulary.vocabulary) return;
   enable(vocabulary.idVocabulary);
   handlerHidde();
   handlerStatus(messageSuccessVocabulary.enable, true, vocabulary.vocabulary);
  }
- if (decisition && type === typesAction.edit && vocabulary?.idVocabulary) {
+ if (decisition && type === types.action.edit && vocabulary?.idVocabulary) {
   if (!vocabulary.vocabulary) return;
   edit(vocabulary);
   handlerHidde();

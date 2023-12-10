@@ -5,7 +5,7 @@ import { validationCategory, validationSearch } from '@/validations';
 import { StatusBar, View, Dimensions, StyleSheet } from 'react-native';
 import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
 import { CustomList, CustomCategoryForm, CustomModal } from '@/atomic/components';
-import { messageRefresh, typesButton, typesForm, typesIcon, data } from '@/constants';
+import { messageRefresh, types, data } from '@/constants';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -50,15 +50,15 @@ const CategoryScreen = () => {
    <View className="w-full h-full flex-col bg-sky-100 justify-start items-stretch p-4 space-y-8">
     {/* button go bakc */}
     <CustomButton
-     type={typesButton.icon}
-     icon={typesIcon.arrowLeft}
+     type={types.button.icon}
+     icon={types.icon.arrowLeft}
      handlerPress={handlerHiddeEdition}
     />
     <View></View>
     {/* edit category form */}
     <CustomCategoryForm
      isVisible={true}
-     type={typesForm.edit}
+     type={types.form.edit}
      entity={category}
      validationSchema={validationCategory}
      handlerSubmit={handlerEdit}
@@ -71,8 +71,8 @@ const CategoryScreen = () => {
    <View className="w-full h-full flex-col bg-sky-100 justify-start items-stretch p-4 space-y-8">
     {/* button go back */}
     <CustomButton
-     type={typesButton.icon}
-     icon={typesIcon.arrowLeft}
+     type={types.button.icon}
+     icon={types.icon.arrowLeft}
      handlerPress={handlerHiddeDisable}
     />
     <View></View>
@@ -82,7 +82,7 @@ const CategoryScreen = () => {
      title={content.category.text}
      items={disabledCategories}
      handlerEnable={handlerEnable}
-     icons={[typesIcon.enable]}
+     icons={[types.icon.enable]}
      name={content.category.text}
     />
    </View>
@@ -97,8 +97,8 @@ const CategoryScreen = () => {
      {/* refresh button  */}
      <CustomButton
       isDisable={false}
-      type={typesButton.icon}
-      icon={typesIcon.refresh}
+      type={types.button.icon}
+      icon={types.icon.refresh}
       stylyButton="bg-white p-2 rounded-xl flex-row justify-between"
       stylyText="text-xl text-red-800  text-center"
       handlerPress={handlerRefresAll}
@@ -107,8 +107,8 @@ const CategoryScreen = () => {
      {/* button elimnate */}
      <CustomButton
       isDisable={false}
-      type={typesButton.iconText}
-      icon={typesIcon.elimited}
+      type={types.button.iconText}
+      icon={types.icon.elimited}
       text={`${disabledCategories.length}`}
       stylyButton="bg-white p-2 rounded-xl flex-row justify-between"
       stylyText="text-xl text-red-800  text-center"
@@ -119,7 +119,7 @@ const CategoryScreen = () => {
     {/* category Form */}
     <CustomCategoryForm
      isVisible={false}
-     type={typesForm.create}
+     type={types.form.create}
      entity={category}
      validationSchema={validationCategory}
      handlerSubmit={handlerSave}
@@ -139,11 +139,11 @@ const CategoryScreen = () => {
      goScreen={goScreenVocabulary}
      handlerEdit={handlerEdition}
      handlerEliminate={handlerDisable}
-     icons={[typesIcon.edit, typesIcon.elimited]}
+     icons={[types.icon.edit, types.icon.elimited]}
     />
     <View></View>
     <CustomButton
-     type={typesButton.default}
+     type={types.button.default}
      stylyButton="p-4"
      stylyText="text-xl text-center text-slate-800 font-semibold"
      handlerPress={handleProfile}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { CustomModalProps } from '@/types';
-import { images, typesButton, typesSizeTextStyle, typesText } from '@/constants';
+import { images, types } from '@/constants';
 import { CustomButton, CustomPhoto, CustomText } from '@/atomic/elements';
 
 const CustomModal = (props: CustomModalProps) => {
@@ -17,19 +17,19 @@ const CustomModal = (props: CustomModalProps) => {
     </View>
     {/* title and message modal */}
     <CustomText
-     variant={typesText.seccundary}
-     size={typesSizeTextStyle['2xl']}
+     variant={types.text.seccundary}
+     size={types.styleText['2xl']}
      text={props.setting.message?.title as string}
     />
     <CustomText
-     variant={typesText.seccundary}
-     size={typesSizeTextStyle['xl']}
+     variant={types.text.seccundary}
+     size={types.styleText['xl']}
      text={props.setting.message?.text as string}
     />
     {/* Button modal */}
     <View></View>
     <CustomButton
-     type={typesButton.default}
+     type={types.button.default}
      isDisable={false}
      stylyText={'text-center font-semibold text-xl text-slate-100'}
      text={'Ok'}

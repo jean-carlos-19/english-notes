@@ -4,14 +4,7 @@ import { ModelVocabulary } from '@/models';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomVocabularyFormProps } from '@/types';
 import { CustomButton, CustomInput, CustomText } from '@/atomic/elements';
-import {
- typesButton,
- typesForm,
- typesIcon,
- data,
- typesSizeTextStyle,
- typesText,
-} from '@/constants';
+import { types, data } from '@/constants';
 
 const content = data.forms.vocabulary;
 
@@ -37,15 +30,15 @@ const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
       {/* Header */}
       <View className="flex-row justify-between items-center space-x-4">
        <CustomText
-        variant={typesText.primary}
-        size={typesSizeTextStyle.xl}
-        text={type === typesForm.edit ? content.edit.title : content.create.title}
+        variant={types.text.primary}
+        size={types.styleText.xl}
+        text={type === types.form.edit ? content.edit.title : content.create.title}
        />
        <View></View>
        <CustomButton
         isDisable={false}
-        type={typesButton.iconText}
-        icon={isActivate ? typesIcon.eye : typesIcon.EyeSlashIcon}
+        type={types.button.iconText}
+        icon={isActivate ? types.icon.eye : types.icon.EyeSlashIcon}
         stylyButton="bg-white p-2 rounded-xl flex-row justify-between"
         stylyText="text-xl text-red-800  text-center"
         handlerPress={handlerHiddeContent}
@@ -85,18 +78,18 @@ const CustomVocabularyForm = (props: CustomVocabularyFormProps) => {
         <View></View>
         {/* button send and edit form */}
         <CustomButton
-         type={typesButton.default}
+         type={types.button.default}
          isDisable={!props.isValid}
          stylyButton={'p-4 bg-blue-500 rounded-xl'}
          stylyText={'text-center font-semibold text-xl text-slate-100'}
-         text={type === typesForm.edit ? content.edit.button : content.create.button}
+         text={type === types.form.edit ? content.edit.button : content.create.button}
          handlerPress={props.handleSubmit}
         />
         {/* button omitir form */}
-        {type === typesForm.edit && (
+        {type === types.form.edit && (
          <View className="flex-col space-y-4">
           <CustomButton
-           type={typesButton.default}
+           type={types.button.default}
            isDisable={false}
            stylyButton={'p-4 bg-blue-100 rounded-xl'}
            stylyText={'text-center font-semibold text-xl text-slate-500'}

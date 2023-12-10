@@ -1,11 +1,9 @@
 import { ImageSourcePropType } from 'react-native';
 /*  */
-
 interface Search {
  search: string;
 }
 /*  */
-
 interface Message {
  title: string | undefined;
  text: string | undefined;
@@ -52,7 +50,7 @@ type RootStackParamList = {
 };
 
 /* types form */
-type typesForm = 'create' | 'edit';
+type statusForm = 'create' | 'edit';
 type Item = { id: number; name: string; translation?: string };
 /* types buttons */
 type statusButton = 'default' | 'icon' | 'iconText';
@@ -80,13 +78,14 @@ type statusText = 'Primary' | 'Secundary' | 'Error';
 type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
 /*  */
 type statusDialog = 'success' | 'error';
+
 export type {
  RootStackParamList,
  dialogSetting,
  ModalSetting,
  statusButton,
  statusIcon,
- typesForm,
+ statusForm,
  statusText,
  Community,
  Message,

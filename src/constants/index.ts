@@ -64,22 +64,22 @@ const typesStatusDialog = Object.freeze({
  error: 'error',
 });
 
+const types = Object.freeze({
+ styleText: typesSizeTextStyle,
+ dialog: typesStatusDialog,
+ action: typesAction,
+ button: typesButton,
+ icon: typesIcon,
+ text: typesText,
+ form: typesForm,
+});
+export { images } from './images';
+
 export {
  messageSuccessCategory,
  messageCategoryDialog,
  messageSuccessVocabulary,
  messageVocabularyDialog,
 } from './message';
-export { images } from './images';
 
-export {
- typesIcon,
- typesForm,
- typesButton,
- typesAction,
- messageRefresh,
- typesStatusDialog,
- typesText,
- typesSizeTextStyle,
- data,
-};
+export { data, types, messageRefresh };

@@ -1,22 +1,22 @@
-import { CustomTextProps, statusText } from '@/types';
-import { typesText, typesSizeTextStyle } from '@/constants';
-import { Text } from 'react-native';
 import React from 'react';
+import { Text } from 'react-native';
+import { types } from '@/constants';
+import { CustomTextProps, statusText } from '@/types';
 
 const getClassName = (type: statusText): string => {
  let className: string = '';
- if (type === typesText.primary) className = 'text-blue-900 font-semibold';
- if (type === typesText.seccundary) className = 'text-slate-800';
- if (type === typesText.error) className = '';
+ if (type === types.text.primary) className = 'text-blue-900 font-semibold';
+ if (type === types.text.seccundary) className = 'text-slate-800';
+ if (type === types.text.error) className = '';
  return className;
 };
 
 const getSizeStyle = (size: string): string => {
  let className: string = '';
- if (size === typesSizeTextStyle.normal) className = 'text-sm';
- if (size === typesSizeTextStyle.xl) className = 'text-xl';
- if (size === typesSizeTextStyle['2xl']) className = 'text-2xl';
- if (size === typesSizeTextStyle['3xl']) className = 'text-3xl';
+ if (size === types.styleText.normal) className = 'text-sm';
+ if (size === types.styleText.xl) className = 'text-xl';
+ if (size === types.styleText['2xl']) className = 'text-2xl';
+ if (size === types.styleText['3xl']) className = 'text-3xl';
  return className;
 };
 const CustomText = (props: CustomTextProps) => {

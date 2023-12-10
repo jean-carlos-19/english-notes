@@ -1,12 +1,12 @@
 import React from 'react';
 import { Icon } from './Icon';
-import { typesButton } from '@/constants';
+import { types } from '@/constants';
 import { CustomButtonProps } from '@/types';
 import { TouchableOpacity, Text, View } from 'react-native';
 
 const CustomButton = (props: CustomButtonProps) => {
  /* default button  */
- if (props.type === typesButton.default)
+ if (props.type === types.button.default)
   return (
    <TouchableOpacity
     className={props.isDisable ? 'p-4 bg-gray-400 rounded-xl' : props.stylyButton}
@@ -18,7 +18,7 @@ const CustomButton = (props: CustomButtonProps) => {
    </TouchableOpacity>
   );
  /* icon button */
- if (props.type === typesButton.icon && props.icon)
+ if (props.type === types.button.icon && props.icon)
   return (
    <TouchableOpacity
     className={props.stylyButton}
@@ -29,7 +29,7 @@ const CustomButton = (props: CustomButtonProps) => {
    </TouchableOpacity>
   );
  /* icon and text of the button */
- if (props.type === typesButton.iconText && props.icon)
+ if (props.type === types.button.iconText && props.icon)
   return (
    <TouchableOpacity
     className={props.stylyButton}

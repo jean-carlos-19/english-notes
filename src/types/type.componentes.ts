@@ -2,7 +2,7 @@ import { AnyObjectSchema } from 'yup';
 import { ModelCategory, ModelVocabulary } from '@/models';
 import { Photo, Message, statusButton, statusIcon, statusText } from './type.common';
 import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
-import { Community, ModalSetting, dialogSetting, typesForm, Search, Item } from './type.common';
+import { Community, ModalSetting, dialogSetting, statusForm, Search, Item } from './type.common';
 
 /*  */
 interface CustomButtonIconProps {
@@ -93,7 +93,7 @@ interface CustomSelectProps {
  handlerChange: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
 }
 interface CustomCategoryFormProps {
- type: typesForm;
+ type: statusForm;
  isVisible: boolean;
  entity: ModelCategory;
  validationSchema: AnyObjectSchema;
@@ -101,7 +101,7 @@ interface CustomCategoryFormProps {
  handlerSubmit: (values: ModelCategory) => void;
 }
 interface CustomVocabularyFormProps {
- type: typesForm;
+ type: statusForm;
  isVisible: boolean;
  entity: ModelVocabulary;
  validationSchema: AnyObjectSchema;

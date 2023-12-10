@@ -1,9 +1,9 @@
-import { CustomDialogProps } from '@/types';
 import React from 'react';
-import { Text, View } from 'react-native';
-import { CustomButton } from './CustomButton';
-import { typesButton, typesSizeTextStyle, typesText } from '@/constants';
+import { View } from 'react-native';
+import { types } from '@/constants';
 import { CustomText } from './CustomText';
+import { CustomDialogProps } from '@/types';
+import { CustomButton } from './CustomButton';
 
 const CustomDialog = (props: CustomDialogProps) => {
  if (!props.setting.isActivate) return null;
@@ -14,20 +14,20 @@ const CustomDialog = (props: CustomDialogProps) => {
    <View className="px-4 py-8 flex-1 space-y-4 bg-white rounded-xl">
     {/* title and message dialog */}
     <CustomText
-     variant={typesText.seccundary}
-     size={typesSizeTextStyle['2xl']}
+     variant={types.text.seccundary}
+     size={types.styleText['2xl']}
      text={props.setting.content?.message.title as string}
     />
 
     <CustomText
-     variant={typesText.seccundary}
-     size={typesSizeTextStyle['normal']}
+     variant={types.text.seccundary}
+     size={types.styleText['normal']}
      text={props.setting.content?.message.text as string}
     />
     {/* button primary dialog */}
     <View></View>
     <CustomButton
-     type={typesButton.default}
+     type={types.button.default}
      isDisable={false}
      stylyButton={'p-4 rounded-xl bg-blue-500'}
      stylyText={'text-xl text-slate-200 text-center font-semibold'}
@@ -37,7 +37,7 @@ const CustomDialog = (props: CustomDialogProps) => {
     {/* button secundary dialog */}
     <View></View>
     <CustomButton
-     type={typesButton.default}
+     type={types.button.default}
      isDisable={false}
      stylyButton={'p-4 rounded-xl bg-slate-200'}
      stylyText={'text-xl text-slate-600 text-center font-semibold'}

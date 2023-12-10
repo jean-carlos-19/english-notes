@@ -5,7 +5,7 @@ import { CustomListProps } from '@/types';
 import { ScrollView, View } from 'react-native';
 import { ActivityIndicator } from 'react-native';
 import { CustomSearchForm } from '@/atomic/components';
-import { images, data, typesText, typesSizeTextStyle, typesButton, typesIcon } from '@/constants';
+import { images, data, types } from '@/constants';
 import { CustomButton, CustomItem, CustomPhoto, CustomText } from '@/atomic/elements';
 
 const content = data.lists;
@@ -16,11 +16,11 @@ const CustomList = (props: CustomListProps) => {
   <View className="flex-1 flex flex-col justify-start items-stretch bg-white p-4 rounded-xl space-y-4">
    <View className="flex flex-row justify-between items-center">
     {/* title list */}
-    <CustomText variant={typesText.primary} size={typesSizeTextStyle.xl} text={props.title} />
+    <CustomText variant={types.text.primary} size={types.styleText.xl} text={props.title} />
     {/* pdf button */}
     <CustomButton
-     type={typesButton.icon}
-     icon={typesIcon.document}
+     type={types.button.icon}
+     icon={types.icon.document}
      handlerPress={() => handlerGeneratePdfCategory(props.items, props.name)}
     />
    </View>
@@ -36,8 +36,8 @@ const CustomList = (props: CustomListProps) => {
    {props.isLoading ? (
     <View className="flex-1 flex-col items-center justify-start space-y-4">
      <CustomText
-      variant={typesText.primary}
-      size={typesSizeTextStyle.xl}
+      variant={types.text.primary}
+      size={types.styleText.xl}
       text={content.loading.text}
      />
      <View></View>

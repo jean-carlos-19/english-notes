@@ -5,12 +5,7 @@ import { useDialog } from './useDialog';
 import { ModelCategory } from '@/models';
 import { useEffect, useState } from 'react';
 import { ServiceCategory } from '@/services';
-import {
- messageCategoryDialog,
- messageSuccessCategory,
- typesAction,
- typesStatusDialog,
-} from '@/constants';
+import { messageCategoryDialog, messageSuccessCategory, types } from '@/constants';
 
 const service: ServiceCategory = ServiceCategory.getService();
 
@@ -35,7 +30,7 @@ const useCategory = (targetSearch?: Search) => {
   handlerVerify,
  } = useDialog();
 
- const { modalSetting, handlerStatus } = useModal(false, typesStatusDialog.success, false);
+ const { modalSetting, handlerStatus } = useModal(false, types.dialog.success, false);
  useEffect(() => {
   if (targetSearch) search(targetSearch);
  }, [targetSearch?.search]);
@@ -72,7 +67,7 @@ const useCategory = (targetSearch?: Search) => {
  /* handler to edit a new category */
  const handlerEdit = (values: ModelCategory) => {
   if (!values?.category) return;
-  handlerAppear(values.category, typesAction.edit, messageCategoryDialog.edit);
+  handlerAppear(values.category, types.action.edit, messageCategoryDialog.edit);
   setCategory(values);
  };
 
@@ -97,13 +92,13 @@ const useCategory = (targetSearch?: Search) => {
 
  /* handler to disable one category */
  const handlerDisable = (id: number, category: string) => {
-  handlerAppear(category, typesAction.eliminate, messageCategoryDialog.disable);
+  handlerAppear(category, types.action.eliminate, messageCategoryDialog.disable);
   setCategory({ idCategory: id, category });
  };
 
  /* handler to enable one category */
  const handlerEnable = (id: number, category: string) => {
-  handlerAppear(category, typesAction.enable, messageCategoryDialog.enable);
+  handlerAppear(category, types.action.enable, messageCategoryDialog.enable);
   setCategory({ idCategory: id, category });
  };
 
@@ -230,17 +225,17 @@ const useCategory = (targetSearch?: Search) => {
   });
  };
 
- if (decisition && type === typesAction.eliminate && category?.idCategory && category?.category) {
+ if (decisition && type === types.action.eliminate && category?.idCategory && category?.category) {
   disable(category.idCategory);
   handlerHidde();
   handlerStatus(messageSuccessCategory.disable, true, category.category);
  }
- if (decisition && type === typesAction.enable && category?.idCategory && category?.category) {
+ if (decisition && type === types.action.enable && category?.idCategory && category?.category) {
   enable(category.idCategory);
   handlerHidde();
   handlerStatus(messageSuccessCategory.enable, true, category.category);
  }
- if (decisition && type === typesAction.edit && category?.idCategory && category?.category) {
+ if (decisition && type === types.action.edit && category?.idCategory && category?.category) {
   edit(category);
   handlerHidde();
   handlerStatus(messageSuccessCategory.edit, true, category.category);
