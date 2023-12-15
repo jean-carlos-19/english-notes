@@ -1,4 +1,22 @@
 {
+ "views": {
+  "vocabulary": {
+   "message": {
+    "loading": {
+     "title": "Message loading",
+     "text": "please wait,"
+    }
+   }
+  },
+  "category": {
+   "message": {
+    "loading": {
+     "title": "Message loading",
+     "text": "please wait,"
+    }
+   }
+  }
+ },
  "forms": {
   "category": {
    "fields": {

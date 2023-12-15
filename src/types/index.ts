@@ -5,7 +5,7 @@ export type {
  statusButton,
  statusIcon,
  statusText,
- typesForm,
+ statusForm,
  Community,
  Message,
  Search,

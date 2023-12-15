@@ -5,12 +5,13 @@ import { validationCategory, validationSearch } from '@/validations';
 import { StatusBar, View, Dimensions, StyleSheet } from 'react-native';
 import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
 import { CustomList, CustomCategoryForm, CustomModal } from '@/atomic/components';
-import { messageRefresh, types, data } from '@/constants';
+import { types, data } from '@/constants';
 
 const { width, height } = Dimensions.get('screen');
 
 const content = data.lists;
 const footer = data.footer;
+const { message } = data.views.category;
 
 const CategoryScreen = () => {
  const { search, hanlderSearch } = useSearch();
@@ -39,7 +40,7 @@ const CategoryScreen = () => {
  const goScreenVocabulary = (id: number, typeCategory: string) =>
   navigation.navigate('Vocabulary', { idCategory: id, category: typeCategory });
  /* secction loading */
- if (isLoading) return <CustomLoading message={messageRefresh} />;
+ if (isLoading) return <CustomLoading message={message.loading} />;
  /* secction modal */
  if (modalSetting.isActivate) return <CustomModal setting={modalSetting} />;
 

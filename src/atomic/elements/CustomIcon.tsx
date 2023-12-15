@@ -16,7 +16,7 @@ import {
  DocumentArrowDownIcon,
 } from 'react-native-heroicons/solid';
 
-const Icon = (props: IconProps) => {
+const CustomIcon = (props: IconProps) => {
  const { icon } = props;
 
  if (icon === types.icon.enable) return <CheckIcon size={25} color={theme.gray} strokeWidth={1} />;
@@ -39,4 +39,4 @@ const Icon = (props: IconProps) => {
  return null;
 };
 
-export { Icon };
+export { CustomIcon };

@@ -1,4 +1,4 @@
-export { Icon } from './Icon';
+export { CustomIcon } from './CustomIcon';
 export { CustomItem } from './CustomItem';
 export { CustomText } from './CustomText';
 export { CustomInput } from './CustomInput';

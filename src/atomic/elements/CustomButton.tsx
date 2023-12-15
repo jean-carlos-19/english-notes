@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from './Icon';
+import { CustomIcon } from './CustomIcon';
 import { types } from '@/constants';
 import { CustomButtonProps } from '@/types';
 import { TouchableOpacity, Text, View } from 'react-native';
@@ -25,7 +25,7 @@ const CustomButton = (props: CustomButtonProps) => {
     onPress={props.handlerPress}
     disabled={props.isDisable}
    >
-    <Icon icon={props.icon} />
+    <CustomIcon icon={props.icon} />
    </TouchableOpacity>
   );
  /* icon and text of the button */
@@ -38,7 +38,7 @@ const CustomButton = (props: CustomButtonProps) => {
    >
     <Text className={props.stylyText}>{props.text}</Text>
     <View></View>
-    <Icon icon={props.icon} />
+    <CustomIcon icon={props.icon} />
    </TouchableOpacity>
   );
  return null;

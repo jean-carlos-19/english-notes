@@ -6,10 +6,11 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Dimensions, StatusBar, Text, View, StyleSheet } from 'react-native';
 import { CustomButton, CustomDialog, CustomLoading } from '@/atomic/elements';
 import { CustomList, CustomModal, CustomVocabularyForm } from '@/atomic/components';
-import { messageRefresh, types, data } from '@/constants';
+import { types, data } from '@/constants';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Vocabulary'>;
 const content = data.lists;
+const { message } = data.views.category;
 
 const { width, height } = Dimensions.get('screen');
 
@@ -38,7 +39,7 @@ const VocabularyScreen = (props: Props) => {
  } = useVocabulary(props.route.params.idCategory, props.route.params.category, search);
 
  /* secction load */
- if (isLoading) return <CustomLoading message={messageRefresh} />;
+ if (isLoading) return <CustomLoading message={message.loading} />;
  /* secction modal */
  if (modalSetting.isActivate) return <CustomModal setting={modalSetting} />;
 
